@@ -10,12 +10,14 @@ import SwiftUI
 struct ContainerView<Content: View>: View {
     // MARK: - Properties
     private let isLoading: Bool?
+    private let alert: (type: AlertType, isPresented: Bool)
     private let content: Content
-    @State var isDisabled: Bool = false
+    @State private var isDisabled: Bool = false
     
     // MARK: - Lifecycles
-    init(isLoading: Bool? = false, content: @escaping () -> Content) {
+    init(isLoading: Bool? = false, alert: (type: AlertType, isPresented: Bool) = (.unableToProceed, false), content: @escaping () -> Content) {
         self.isLoading = isLoading
+        self.alert = alert
         self.content = content()
     }
     
@@ -32,10 +34,12 @@ struct ContainerView<Content: View>: View {
             }
             self.content
                 .disabled(self.isDisabled)
-            // Toast
-            
-            // Alert
-            
         }
+        // Alert
+        .alert(isPresented: .constant(self.alert.isPresented)) {
+            self.alert.type.show
+        }
+        // Toast
+        
     }
 }

@@ -42,7 +42,7 @@ struct SignUpView: View {
                             self.model.performSignUp(router: self.router)
                         }
                         ButtonView(type: .secondary, label: Constants.signIn) {
-                            self.router.navigateTo(screen: .signUp)
+                            self.router.navigateTo(screen: .signIn)
                         }
                     }
                     HStack(spacing: 32) {
