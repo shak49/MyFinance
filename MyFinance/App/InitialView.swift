@@ -17,25 +17,25 @@ struct InitialView: View {
             Image(.logo)
                 .resizable()
                 .frame(width: 240, height: 240)
-            VStack(spacing: 15) {
+            VStack(spacing: 16) {
                 Button {
-                    router.navigateTo(screen: .signInView)
+                    self.router.navigateTo(screen: .signIn)
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
                             .foregroundColor(.primaryButton)
-                        Text("Sign In")
+                        Text(Constants.signIn)
                             .foregroundStyle(.textAccentB)
                     }
                     .frame(height: 50)
                 }
                 Button {
-                    router.navigateTo(screen: .signUpView)
+                    self.router.navigateTo(screen: .signUp)
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
                             .foregroundColor(.secondaryButton)
-                        Text("Create An Account")
+                        Text(Constants.signUp)
                             .foregroundStyle(.textAccentW)
                     }
                     .frame(height: 50)

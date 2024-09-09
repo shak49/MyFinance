@@ -19,6 +19,15 @@
 		6D5F90532C83F6140005CC5B /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F90522C83F6140005CC5B /* SignInView.swift */; };
 		6D5F905E2C853A4C0005CC5B /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F905D2C853A4C0005CC5B /* BaseVM.swift */; };
 		6D5F906C2C8940200005CC5B /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F906B2C8940200005CC5B /* ContainerView.swift */; };
+		6D5F90702C8A83990005CC5B /* ValidationTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F906F2C8A83990005CC5B /* ValidationTextFieldView.swift */; };
+		6D5F90752C8B67B90005CC5B /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F90742C8B67B90005CC5B /* AuthVM.swift */; };
+		6D5F90772C8B87BD0005CC5B /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F90762C8B87BD0005CC5B /* CustomButtonView.swift */; };
+		6D5F907B2C8B9D5F0005CC5B /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F907A2C8B9D5F0005CC5B /* FieldModel.swift */; };
+		6D5F907D2C8CBA240005CC5B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F907C2C8CBA230005CC5B /* HomeView.swift */; };
+		6D5F90802C8CBA950005CC5B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F907F2C8CBA950005CC5B /* SignUpView.swift */; };
+		6D5F90822C8CC11A0005CC5B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F90812C8CC11A0005CC5B /* MainView.swift */; };
+		6D5F90852C8CD3520005CC5B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F90842C8CD3520005CC5B /* SettingsView.swift */; };
+		6D5F90892C8E4F480005CC5B /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F90882C8E4F480005CC5B /* Alerts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +45,15 @@
 		6D5F90522C83F6140005CC5B /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		6D5F905D2C853A4C0005CC5B /* BaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVM.swift; sourceTree = "<group>"; };
 		6D5F906B2C8940200005CC5B /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		6D5F906F2C8A83990005CC5B /* ValidationTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationTextFieldView.swift; sourceTree = "<group>"; };
+		6D5F90742C8B67B90005CC5B /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
+		6D5F90762C8B87BD0005CC5B /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
+		6D5F907A2C8B9D5F0005CC5B /* FieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldModel.swift; sourceTree = "<group>"; };
+		6D5F907C2C8CBA230005CC5B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		6D5F907F2C8CBA950005CC5B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		6D5F90812C8CC11A0005CC5B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		6D5F90842C8CD3520005CC5B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		6D5F90882C8E4F480005CC5B /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +89,7 @@
 				6D5F903E2C83BB040005CC5B /* Info.plist */,
 				6D5F90302C83B9AE0005CC5B /* MyFinanceApp.swift */,
 				6D5F90342C83B9AF0005CC5B /* Assets.xcassets */,
+				6D5F90782C8B9CA10005CC5B /* Models */,
 				6D5F90402C83C89F0005CC5B /* App */,
 				6D5F90412C83C8EC0005CC5B /* Services */,
 				6D5F903F2C83C84B0005CC5B /* Shared */,
@@ -90,13 +109,11 @@
 		6D5F903F2C83C84B0005CC5B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				6D5F90322C83B9AE0005CC5B /* RouterView.swift */,
-				6D5F90462C83E8710005CC5B /* Router.swift */,
 				6D5F90422C83C9050005CC5B /* Constants.swift */,
-				6D5F90442C83CA470005CC5B /* Screen.swift */,
-				6D5F904C2C83EA810005CC5B /* NotImplementedView.swift */,
 				6D5F905D2C853A4C0005CC5B /* BaseVM.swift */,
-				6D5F906B2C8940200005CC5B /* ContainerView.swift */,
+				6D5F90882C8E4F480005CC5B /* Alerts.swift */,
+				6D5F90792C8B9CB20005CC5B /* Router */,
+				6D5F90712C8A83CA0005CC5B /* Views */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -105,7 +122,10 @@
 			isa = PBXGroup;
 			children = (
 				6D5F90482C83E9E70005CC5B /* InitialView.swift */,
-				6D5F90522C83F6140005CC5B /* SignInView.swift */,
+				6D5F90812C8CC11A0005CC5B /* MainView.swift */,
+				6D5F90722C8B674A0005CC5B /* Auth */,
+				6D5F907E2C8CBA2E0005CC5B /* Home */,
+				6D5F90832C8CD3420005CC5B /* Settings */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -115,6 +135,61 @@
 			children = (
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		6D5F90712C8A83CA0005CC5B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6D5F906B2C8940200005CC5B /* ContainerView.swift */,
+				6D5F90762C8B87BD0005CC5B /* CustomButtonView.swift */,
+				6D5F904C2C83EA810005CC5B /* NotImplementedView.swift */,
+				6D5F906F2C8A83990005CC5B /* ValidationTextFieldView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6D5F90722C8B674A0005CC5B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				6D5F90522C83F6140005CC5B /* SignInView.swift */,
+				6D5F907F2C8CBA950005CC5B /* SignUpView.swift */,
+				6D5F90742C8B67B90005CC5B /* AuthVM.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		6D5F90782C8B9CA10005CC5B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6D5F907A2C8B9D5F0005CC5B /* FieldModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6D5F90792C8B9CB20005CC5B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				6D5F90322C83B9AE0005CC5B /* RouterView.swift */,
+				6D5F90462C83E8710005CC5B /* Router.swift */,
+				6D5F90442C83CA470005CC5B /* Screen.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		6D5F907E2C8CBA2E0005CC5B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6D5F907C2C8CBA230005CC5B /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		6D5F90832C8CD3420005CC5B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6D5F90842C8CD3520005CC5B /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,16 +262,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D5F90752C8B67B90005CC5B /* AuthVM.swift in Sources */,
+				6D5F90892C8E4F480005CC5B /* Alerts.swift in Sources */,
 				6D5F906C2C8940200005CC5B /* ContainerView.swift in Sources */,
 				6D5F90532C83F6140005CC5B /* SignInView.swift in Sources */,
+				6D5F90852C8CD3520005CC5B /* SettingsView.swift in Sources */,
+				6D5F907D2C8CBA240005CC5B /* HomeView.swift in Sources */,
+				6D5F90772C8B87BD0005CC5B /* CustomButtonView.swift in Sources */,
 				6D5F90332C83B9AE0005CC5B /* RouterView.swift in Sources */,
 				6D5F90312C83B9AE0005CC5B /* MyFinanceApp.swift in Sources */,
 				6D5F904D2C83EA810005CC5B /* NotImplementedView.swift in Sources */,
 				6D5F90472C83E8710005CC5B /* Router.swift in Sources */,
 				6D5F90492C83E9E70005CC5B /* InitialView.swift in Sources */,
 				6D5F90432C83C9050005CC5B /* Constants.swift in Sources */,
+				6D5F90822C8CC11A0005CC5B /* MainView.swift in Sources */,
+				6D5F90702C8A83990005CC5B /* ValidationTextFieldView.swift in Sources */,
+				6D5F90802C8CBA950005CC5B /* SignUpView.swift in Sources */,
 				6D5F90452C83CA470005CC5B /* Screen.swift in Sources */,
 				6D5F905E2C853A4C0005CC5B /* BaseVM.swift in Sources */,
+				6D5F907B2C8B9D5F0005CC5B /* FieldModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

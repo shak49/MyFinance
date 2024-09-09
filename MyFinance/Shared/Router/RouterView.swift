@@ -13,7 +13,7 @@ struct RouterView<Content: View>: View {
     private let content: Content
     
     // MARK: - Lifecycles
-    init(@ViewBuilder content: @escaping () -> Content) {
+    init(content: @escaping () -> Content) {
         self.content = content()
     }
     
