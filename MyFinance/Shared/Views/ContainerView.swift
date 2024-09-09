@@ -37,7 +37,7 @@ struct ContainerView<Content: View>: View {
         }
         // Alert
         .alert(isPresented: .constant(self.alert.isPresented)) {
-            self.alert.type.show
+            self.alert.type.display
         }
         // Toast
         

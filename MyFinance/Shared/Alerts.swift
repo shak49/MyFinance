@@ -11,7 +11,7 @@ enum AlertType {
     case unableToProceed
     case success
     
-    var show: Alert {
+    var display: Alert {
         switch self {
         case .unableToProceed:
             Alert(title: Text(Constants.alertErrorTitle), message: Text(Constants.alertCannotProceedMessage), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
