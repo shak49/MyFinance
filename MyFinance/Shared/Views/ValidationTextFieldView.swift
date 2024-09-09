@@ -74,11 +74,3 @@ struct ValidationTextFieldView: View {
         }
     }
 }
-
-struct ValidationTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        let field = FieldModel(value: "", type: .email)
-        ValidationTextFieldView(field: .constant(field), radius: 10, height: 50, onChange: {})
-            .previewLayout(.sizeThatFits)
-    }
-}

@@ -16,7 +16,9 @@ struct Constants {
     static let alertButtonOk = "Ok"
     static let alertErrorTitle = "Error"
     static let alertSuccessTitle = "Success"
-    static let alertCannotProceedMessage = "Unable to proceed."
+    static let alertCannotProceedMessage = "Unable to proceed!"
+    static let alertCannotSignInMessage = "Unable to sign in!"
+    static let alertCannotSignUpMessage = "Unable to sign up!"
     static let alertSuccessMessage = "Account was successfully created."
     // MARK: - Auth Labels
     static let signInLabel = "Enter your information to sign in to your account!"

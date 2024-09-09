@@ -16,7 +16,7 @@ struct SignUpView: View {
     
     // MARK: - Body
     var body: some View {
-        ContainerView(isLoading: self.model.isLoading) {
+        ContainerView(isLoading: self.model.isLoading, alert: self.model.alert) {
             VStack(spacing: 64) {
                 Label {
                     Text(Constants.signUpLabel)

@@ -18,13 +18,15 @@ final class AuthVM: ObservableObject {
     
     // MARK: - Functions
     func performSignIn(router: Router) {
-        self.alert.type = .unableToProceed
+        self.alert.type = .unableToSignIn
         self.alert.isPresented = true
         //router.navigateTo(screen: .main)
     }
     
     func performSignUp(router: Router) {
-        router.navigateTo(screen: .main)
+        self.alert.type = .unableToSignUp
+        self.alert.isPresented = true
+        //router.navigateTo(screen: .main)
     }
     
     func performGoogleSignIn() {
