@@ -7,11 +7,10 @@
 
 import Foundation
 
-final class AuthVM: ObservableObject {
+final class AuthVM: BaseVM {
     // MARK: - Properties
     @Published var emailField = FieldModel(value: Constants.emptyString, type: .email)
     @Published var passwordField = FieldModel(value: Constants.emptyString, type: .password)
-    @Published var alert: (type: AlertType, isPresented: Bool) = (.unableToProceed, false)
     @Published var isLoading: Bool = false
     
     // MARK: - Lifecycles
