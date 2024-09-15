@@ -17,7 +17,7 @@ struct SignUpView: View {
     // MARK: - Body
     var body: some View {
         ContainerView(isLoading: self.model.isLoading, alert: self.model.alert) {
-            VStack(spacing: 64) {
+            VStack(spacing: 40) {
                 Label {
                     Text(Constants.signUpLabel)
                         .font(.system(size: 24))
@@ -36,22 +36,12 @@ struct SignUpView: View {
                         self.model.passwordField.onSubmitError()
                     }
                 }
-                VStack(spacing: 40) {
-                    VStack(spacing: 16) {
-                        ButtonView(type: .primary, label: Constants.signUp) {
-                            self.model.performSignUp(router: self.router)
-                        }
-                        ButtonView(type: .secondary, label: Constants.signIn) {
-                            self.router.navigateTo(screen: .signIn)
-                        }
+                VStack(spacing: 16) {
+                    ButtonView(type: .primary, label: Constants.signUp) {
+                        self.model.performSignUp(router: self.router)
                     }
-                    HStack(spacing: 32) {
-                        ButtonView(type: .sso) {
-                            self.model.performGoogleSignUp()
-                        }
-                        ButtonView(type: .sso) {
-                            self.model.performAppleSignUp()
-                        }
+                    ButtonView(type: .secondary, label: Constants.signIn) {
+                        self.router.navigateTo(screen: .signIn)
                     }
                 }
             }
