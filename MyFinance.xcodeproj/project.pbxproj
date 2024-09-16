@@ -29,6 +29,7 @@
 		6D5F90852C8CD3520005CC5B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F90842C8CD3520005CC5B /* SettingsView.swift */; };
 		6D5F90892C8E4F480005CC5B /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F90882C8E4F480005CC5B /* Alerts.swift */; };
 		6DD43F872C97837F00476743 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F862C97837F00476743 /* Endpoint.swift */; };
+		6DD43F892C98D77C00476743 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F882C98D77C00476743 /* NetworkClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		6D5F90842C8CD3520005CC5B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6D5F90882C8E4F480005CC5B /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		6DD43F862C97837F00476743 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		6DD43F882C98D77C00476743 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				6DD43F862C97837F00476743 /* Endpoint.swift */,
+				6DD43F882C98D77C00476743 /* NetworkClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				6D5F90312C83B9AE0005CC5B /* MyFinanceApp.swift in Sources */,
 				6D5F904D2C83EA810005CC5B /* NotImplementedView.swift in Sources */,
 				6D5F90472C83E8710005CC5B /* Router.swift in Sources */,
+				6DD43F892C98D77C00476743 /* NetworkClient.swift in Sources */,
 				6D5F90492C83E9E70005CC5B /* InitialView.swift in Sources */,
 				6D5F90432C83C9050005CC5B /* Constants.swift in Sources */,
 				6D5F90822C8CC11A0005CC5B /* MainView.swift in Sources */,
