@@ -27,6 +27,8 @@ struct Constants {
     static let signIn = "Sign In"
     static let signUp = "Sign Up"
     // MARK: - Placeholder Texts
+    static let placeholderFirstname = "Enter your first name..."
+    static let placeholderLastname = "Enter your last name..."
     static let placeholderEmail = "Enter your email..."
     static let placeholderPassword = "Enter your password..."
     // MARK: - Validation Error Texts

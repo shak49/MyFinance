@@ -18,16 +18,10 @@ struct SignUpView: View {
     var body: some View {
         ContainerView(isLoading: self.model.isLoading, alert: self.model.alert) {
             VStack(spacing: 40) {
-                Label {
-                    Text(Constants.signUpLabel)
-                        .font(.system(size: 24))
-                        .lineLimit(2)
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.textAccentW)
-                } icon: {
-                    
+                VStack(spacing: 40) {
+                    BasicTextField(name: self.$model.fistname, placeholder: Constants.placeholderFirstname)
+                    BasicTextField(name: self.$model.lastname, placeholder: Constants.placeholderLastname)
                 }
-                .frame(height: 100)
                 VStack(spacing: 16) {
                     ValidationTextFieldView(field: self.$model.emailField) {
                         self.model.emailField.onSubmitError()

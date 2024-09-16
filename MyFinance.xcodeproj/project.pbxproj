@@ -30,6 +30,9 @@
 		6D5F90892C8E4F480005CC5B /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5F90882C8E4F480005CC5B /* Alerts.swift */; };
 		6DD43F872C97837F00476743 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F862C97837F00476743 /* Endpoint.swift */; };
 		6DD43F892C98D77C00476743 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F882C98D77C00476743 /* NetworkClient.swift */; };
+		6DD43F8B2C98DF7600476743 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F8A2C98DF7500476743 /* AuthService.swift */; };
+		6DD43F8D2C98E02200476743 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F8C2C98E02200476743 /* UserRequest.swift */; };
+		6DD43F8F2C98ECE000476743 /* BasicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F8E2C98ECE000476743 /* BasicTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		6D5F90882C8E4F480005CC5B /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		6DD43F862C97837F00476743 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		6DD43F882C98D77C00476743 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		6DD43F8A2C98DF7500476743 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		6DD43F8C2C98E02200476743 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
+		6DD43F8E2C98ECE000476743 /* BasicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 			children = (
 				6DD43F862C97837F00476743 /* Endpoint.swift */,
 				6DD43F882C98D77C00476743 /* NetworkClient.swift */,
+				6DD43F8A2C98DF7500476743 /* AuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -146,6 +153,7 @@
 		6D5F90712C8A83CA0005CC5B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6DD43F8E2C98ECE000476743 /* BasicTextField.swift */,
 				6D5F906B2C8940200005CC5B /* ContainerView.swift */,
 				6D5F90762C8B87BD0005CC5B /* CustomButtonView.swift */,
 				6D5F904C2C83EA810005CC5B /* NotImplementedView.swift */,
@@ -168,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				6D5F907A2C8B9D5F0005CC5B /* FieldModel.swift */,
+				6DD43F8C2C98E02200476743 /* UserRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,13 +282,16 @@
 				6D5F906C2C8940200005CC5B /* ContainerView.swift in Sources */,
 				6D5F90532C83F6140005CC5B /* SignInView.swift in Sources */,
 				6D5F90852C8CD3520005CC5B /* SettingsView.swift in Sources */,
+				6DD43F8B2C98DF7600476743 /* AuthService.swift in Sources */,
 				6D5F907D2C8CBA240005CC5B /* HomeView.swift in Sources */,
 				6D5F90772C8B87BD0005CC5B /* CustomButtonView.swift in Sources */,
 				6D5F90332C83B9AE0005CC5B /* RouterView.swift in Sources */,
 				6D5F90312C83B9AE0005CC5B /* MyFinanceApp.swift in Sources */,
+				6DD43F8F2C98ECE000476743 /* BasicTextField.swift in Sources */,
 				6D5F904D2C83EA810005CC5B /* NotImplementedView.swift in Sources */,
 				6D5F90472C83E8710005CC5B /* Router.swift in Sources */,
 				6DD43F892C98D77C00476743 /* NetworkClient.swift in Sources */,
+				6DD43F8D2C98E02200476743 /* UserRequest.swift in Sources */,
 				6D5F90492C83E9E70005CC5B /* InitialView.swift in Sources */,
 				6D5F90432C83C9050005CC5B /* Constants.swift in Sources */,
 				6D5F90822C8CC11A0005CC5B /* MainView.swift in Sources */,

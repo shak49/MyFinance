@@ -48,10 +48,11 @@ struct ValidationTextFieldView: View {
                         Button {
                             self.isVisible.toggle()
                         } label: {
-                            Image(self.isVisible ? "eye" : "eye.slash")
+                            Image(systemName: self.isVisible ? "eye" : "eye.slash")
                                 .resizable()
-                                .frame(width: 12, height: 12)
                         }
+                        .frame(width: 12, height: 12)
+                        .foregroundStyle(.gray)
                     }
                     .foregroundStyle(.gray)
                 }
