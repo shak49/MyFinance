@@ -6,37 +6,40 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class AuthVM: BaseVM {
     // MARK: - Properties
-    @Published var fistname: String = ""
-    @Published var lastname: String = ""
-    @Published var emailField = FieldModel(value: Constants.emptyString, type: .email)
-    @Published var passwordField = FieldModel(value: Constants.emptyString, type: .password)
-    @Published var isLoading: Bool = false
-    private var auth: AuthService?
+    @Published var fistname: String = Constants.emptyString
+    @Published var lastname: String = Constants.emptyString
+    @Published var email: String = Constants.emptyString
+    @Published var password: String = Constants.emptyString
+    private var auth: AuthService? = AuthService()
     
     // MARK: - Lifecycles
     
     // MARK: - Functions
     func performSignIn(router: Router) {
-        self.alert.type = .unableToSignIn
-        self.alert.isPresented = true
-        //router.navigateTo(screen: .main)
+
     }
     
     @MainActor func performSignUp(router: Router) {
-        guard let email = self.emailField.value,
-              let password = self.passwordField.value else { return }
-        let user = UserRequest(firstname: self.fistname, lastname: self.lastname, email: email, password: password)
+        let user = AuthRequest(firstname: self.fistname, lastname: self.lastname, email: self.email, password: self.password)
+        self.isLoading = true
         Task {
-            guard let response = await self.auth?.signUp(user: user) else {
+            guard let result = await self.auth?.signUp(user: user) else { return }
+            switch result {
+            case .success:
+                self.isLoading = false
+                self.toast.type = .success
+                self.toast.isPresented = true
+                router.navigateTo(screen: .main)
+            case .failure(let error):
+                self.isLoading = false
                 self.alert.type = .unableToSignUp
+                self.alert.message = error.localizedDescription
                 self.alert.isPresented = true
-                return
             }
-            print(response)
-            router.navigateTo(screen: .main)
         }
     }
     

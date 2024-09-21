@@ -9,7 +9,9 @@ import Foundation
 
 class BaseVM: ObservableObject {
     // MARK: - Properties
-    @Published var alert: (type: AlertType, isPresented: Bool) = (.unableToProceed, false)
+    @Published var isLoading: Bool = false
+    @Published var alert: CustomAlert = CustomAlert(type: .unableToProceed, message: "", isPresented: false)
+    @Published var toast: Toast = .init(type: .info, isPresented: false)
     
     // MARK: - Lifecycles
     

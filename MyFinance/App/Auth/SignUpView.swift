@@ -16,19 +16,13 @@ struct SignUpView: View {
     
     // MARK: - Body
     var body: some View {
-        ContainerView(isLoading: self.model.isLoading, alert: self.model.alert) {
+        ContainerView(isLoading: self.model.isLoading, alert: self.model.alert, toast: self.model.toast) {
             VStack(spacing: 40) {
-                VStack(spacing: 40) {
-                    BasicTextField(name: self.$model.fistname, placeholder: Constants.placeholderFirstname)
-                    BasicTextField(name: self.$model.lastname, placeholder: Constants.placeholderLastname)
-                }
                 VStack(spacing: 16) {
-                    ValidationTextFieldView(field: self.$model.emailField) {
-                        self.model.emailField.onSubmitError()
-                    }
-                    ValidationTextFieldView(field: self.$model.passwordField) {
-                        self.model.passwordField.onSubmitError()
-                    }
+                    CustomTextField(name: self.$model.fistname, placeholder: Constants.placeholderFirstname, type: .normal)
+                    CustomTextField(name: self.$model.lastname, placeholder: Constants.placeholderLastname, type: .normal)
+                    CustomTextField(name: self.$model.email, placeholder: Constants.placeholderEmail, type: .email)
+                    CustomTextField(name: self.$model.password, placeholder: Constants.placeholderPassword, type: .password)
                 }
                 VStack(spacing: 16) {
                     ButtonView(type: .primary, label: Constants.signUp) {

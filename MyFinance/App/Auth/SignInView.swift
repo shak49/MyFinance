@@ -29,12 +29,8 @@ struct SignInView: View {
                 }
                 .frame(height: 100)
                 VStack(spacing: 16) {
-                    ValidationTextFieldView(field: self.$model.emailField) {
-                        self.model.emailField.onSubmitError()
-                    }
-                    ValidationTextFieldView(field: self.$model.passwordField) {
-                        self.model.passwordField.onSubmitError()
-                    }
+                    CustomTextField(name: self.$model.email, placeholder: Constants.placeholderEmail, type: .email)
+                    CustomTextField(name: self.$model.password, placeholder: Constants.placeholderPassword, type: .password)
                 }
                 VStack(spacing: 40) {
                     VStack(spacing: 16) {

@@ -14,16 +14,15 @@ final class AuthService {
     // MARK: - Lifecycles
     
     // MARK: - Functions
-    func signUp(user: UserRequest?) async -> UserResponse? {
+    func signUp(user: AuthRequest?) async -> Result<AuthResponse?, Error>? {
         guard let user = user else { return nil }
         do {
             let data = try JSONEncoder().encode(user)
-            let response = try await self.client.request(endpoint: .signUp(data: data), type: UserResponse.self)
-            return response
-        } catch {
-            print("Error: \(error.localizedDescription)")
+            let response = try await self.client.request(endpoint: .signUp(data: data), type: AuthResponse.self)
+            return .success(response)
+        } catch let error {
+            return .failure(error)
         }
-        return nil
     }
     
 }
