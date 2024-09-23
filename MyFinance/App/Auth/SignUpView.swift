@@ -16,14 +16,15 @@ struct SignUpView: View {
     
     // MARK: - Body
     var body: some View {
-        ContainerView(isLoading: self.model.isLoading, alert: self.model.alert, toast: self.model.toast) {
-            VStack(spacing: 40) {
+        ContainerView(isLoading: self.model.isLoading, alert: self.model.alert) {
+            VStack {
                 VStack(spacing: 16) {
-                    CustomTextField(name: self.$model.fistname, placeholder: Constants.placeholderFirstname, type: .normal)
-                    CustomTextField(name: self.$model.lastname, placeholder: Constants.placeholderLastname, type: .normal)
-                    CustomTextField(name: self.$model.email, placeholder: Constants.placeholderEmail, type: .email)
-                    CustomTextField(name: self.$model.password, placeholder: Constants.placeholderPassword, type: .password)
+                    CustomTextField(text: self.$model.fistname, placeholder: Constants.placeholderFirstname, type: .normal)
+                    CustomTextField(text: self.$model.lastname, placeholder: Constants.placeholderLastname, type: .normal)
+                    CustomTextField(text: self.$model.email, placeholder: Constants.placeholderEmail, type: .email)
+                    CustomTextField(text: self.$model.password, placeholder: Constants.placeholderPassword, type: .password)
                 }
+                Spacer()
                 VStack(spacing: 16) {
                     ButtonView(type: .primary, label: Constants.signUp) {
                         self.model.performSignUp(router: self.router)
@@ -34,6 +35,7 @@ struct SignUpView: View {
                 }
             }
             .padding(.horizontal, 32)
+            .padding(.vertical, 96)
         }
     }
 }

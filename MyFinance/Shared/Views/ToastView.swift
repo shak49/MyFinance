@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ToastView: View {
     // MARK: - Properties
-    @EnvironmentObject var router: Router
+    @EnvironmentObject private var router: Router
     var toast: Toast
     
     // MARK: - Lifecycles

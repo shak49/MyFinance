@@ -7,24 +7,35 @@
 
 import Foundation
 
-struct AuthRequest: Codable {
+struct SignUpRequest: Codable {
     let firstname: String?
     let lastname: String?
     let email: String
     let password: String
-    
-    init(firstname: String? = Constants.emptyString, lastname: String? = Constants.emptyString, email: String, password: String) {
-        self.firstname = firstname
-        self.lastname = lastname
-        self.email = email
-        self.password = password
-    }
 }
 
-struct AuthResponse: Codable {
+struct SignUpResponse: Codable {
     let id: String
     let firstname: String
     let lastname: String
     let email: String
     let password: String
+}
+
+struct SignInRequest: Codable {
+    let email: String
+    let password: String
+    
+    init(email: String, password: String) {
+        self.email = email
+        self.password = password
+    }
+}
+
+struct SignInResponse: Codable {
+    enum CodingKeys: String, CodingKey {
+        case token = "id_token"
+    }
+    
+    let token: String?
 }

@@ -33,6 +33,7 @@
 		6DD43F8F2C98ECE000476743 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F8E2C98ECE000476743 /* CustomTextField.swift */; };
 		6DD43F992C9E5A6300476743 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F982C9E5A6300476743 /* ToastView.swift */; };
 		6DD43F9B2C9E5B4100476743 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F9A2C9E5B4100476743 /* Toast.swift */; };
+		6DD43FA62C9F9A2F00476743 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 6DD43FA52C9F9A2F00476743 /* PopupView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DD43FA62C9F9A2F00476743 /* PopupView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +226,7 @@
 			);
 			name = MyFinance;
 			packageProductDependencies = (
+				6DD43FA52C9F9A2F00476743 /* PopupView */,
 			);
 			productName = MyFinance;
 			productReference = 6D5F902D2C83B9AE0005CC5B /* MyFinance.app */;
@@ -254,6 +257,7 @@
 			);
 			mainGroup = 6D5F90242C83B9AE0005CC5B;
 			packageReferences = (
+				6DD43FA42C9F9A2F00476743 /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = 6D5F902E2C83B9AE0005CC5B /* Products */;
 			projectDirPath = "";
@@ -510,6 +514,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6DD43FA42C9F9A2F00476743 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6DD43FA52C9F9A2F00476743 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DD43FA42C9F9A2F00476743 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6D5F90252C83B9AE0005CC5B /* Project object */;
 }

@@ -19,15 +19,31 @@ final class AuthVM: BaseVM {
     // MARK: - Lifecycles
     
     // MARK: - Functions
-    func performSignIn(router: Router) {
-
+    @MainActor func performSignIn(router: Router) {
+        let request = SignInRequest(email: self.email, password: self.password)
+        self.isLoading = true
+        Task {
+            guard let result = await self.auth?.signIn(request: request) else { return }
+            switch result {
+            case .success(let response):
+                guard let token = response?.token else { return }
+                self.isLoading = false
+                self.authToken = token
+                router.navigateTo(screen: .main)
+            case .failure(let error):
+                self.isLoading = false
+                self.alert.type = .unableToSignUp
+                self.alert.message = error.localizedDescription
+                self.alert.isPresented = true
+            }
+        }
     }
     
     @MainActor func performSignUp(router: Router) {
-        let user = AuthRequest(firstname: self.fistname, lastname: self.lastname, email: self.email, password: self.password)
+        let request = SignUpRequest(firstname: self.fistname, lastname: self.lastname, email: self.email, password: self.password)
         self.isLoading = true
         Task {
-            guard let result = await self.auth?.signUp(user: user) else { return }
+            guard let result = await self.auth?.signUp(request: request) else { return }
             switch result {
             case .success:
                 self.isLoading = false
