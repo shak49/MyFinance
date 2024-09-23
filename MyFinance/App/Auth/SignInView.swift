@@ -17,25 +17,12 @@ struct SignInView: View {
     // MARK: - Body
     var body: some View {
         ContainerView(isLoading: self.model.isLoading, alert: self.model.alert) {
-            VStack(spacing: 64) {
-                Label {
-                    Text(Constants.signInLabel)
-                        .font(.system(size: 24))
-                        .lineLimit(2)
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.textAccentW)
-                } icon: {
-                    
+            VStack {
+                VStack(spacing: 4) {
+                    CustomTextField(text: self.$model.email, placeholder: Constants.placeholderEmail, type: .email)
+                    CustomTextField(text: self.$model.password, placeholder: Constants.placeholderPassword, type: .password)
                 }
-                .frame(height: 100)
-                VStack(spacing: 16) {
-                    ValidationTextFieldView(field: self.$model.emailField) {
-                        self.model.emailField.onSubmitError()
-                    }
-                    ValidationTextFieldView(field: self.$model.passwordField) {
-                        self.model.passwordField.onSubmitError()
-                    }
-                }
+                Spacer()
                 VStack(spacing: 40) {
                     VStack(spacing: 16) {
                         ButtonView(type: .primary, label: Constants.signIn) {
@@ -56,6 +43,7 @@ struct SignInView: View {
                 }
             }
             .padding(.horizontal, 32)
+            .padding(.vertical, 96)
         }
     }
 }

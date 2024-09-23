@@ -6,25 +6,57 @@
 //
 
 import Foundation
+import SwiftUI
 
-final class AuthVM: ObservableObject {
+final class AuthVM: BaseVM {
     // MARK: - Properties
-    @Published var emailField = FieldModel(value: Constants.emptyString, type: .email)
-    @Published var passwordField = FieldModel(value: Constants.emptyString, type: .password)
-    @Published var alert: (type: AlertType, isPresented: Bool) = (.unableToProceed, false)
-    @Published var isLoading: Bool = false
+    @Published var fistname: String = Constants.emptyString
+    @Published var lastname: String = Constants.emptyString
+    @Published var email: String = Constants.emptyString
+    @Published var password: String = Constants.emptyString
+    private var auth: AuthService? = AuthService()
     
     // MARK: - Lifecycles
     
     // MARK: - Functions
-    func performSignIn(router: Router) {
-        self.alert.type = .unableToProceed
-        self.alert.isPresented = true
-        //router.navigateTo(screen: .main)
+    @MainActor func performSignIn(router: Router) {
+        let request = SignInRequest(email: self.email, password: self.password)
+        self.isLoading = true
+        Task {
+            guard let result = await self.auth?.signIn(request: request) else { return }
+            switch result {
+            case .success(let response):
+                guard let token = response?.token else { return }
+                self.isLoading = false
+                self.authToken = token
+                router.navigateTo(screen: .main)
+            case .failure(let error):
+                self.isLoading = false
+                self.alert.type = .unableToSignUp
+                self.alert.message = error.localizedDescription
+                self.alert.isPresented = true
+            }
+        }
     }
     
-    func performSignUp(router: Router) {
-        router.navigateTo(screen: .main)
+    @MainActor func performSignUp(router: Router) {
+        let request = SignUpRequest(firstname: self.fistname, lastname: self.lastname, email: self.email, password: self.password)
+        self.isLoading = true
+        Task {
+            guard let result = await self.auth?.signUp(request: request) else { return }
+            switch result {
+            case .success:
+                self.isLoading = false
+                self.toast.type = .success
+                self.toast.isPresented = true
+                router.navigateTo(screen: .main)
+            case .failure(let error):
+                self.isLoading = false
+                self.alert.type = .unableToSignUp
+                self.alert.message = error.localizedDescription
+                self.alert.isPresented = true
+            }
+        }
     }
     
     func performGoogleSignIn() {

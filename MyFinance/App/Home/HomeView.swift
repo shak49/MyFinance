@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct HomeView: View {
+    // MARK: - Properties
+    
+    // MARK: - Body
     var body: some View {
-        Text("Welcome to Home screen!")
+        ContainerView {
+            Text("Welcome to Home screen!")
+        }
     }
 }
 
