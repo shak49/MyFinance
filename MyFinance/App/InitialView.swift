@@ -13,36 +13,38 @@ struct InitialView: View {
     
     // MARK: - Body
     var body: some View {
-        VStack {
-            Image(.logo)
-                .resizable()
-                .frame(width: 240, height: 240)
-            VStack(spacing: 16) {
-                Button {
-                    self.router.navigateTo(screen: .signIn)
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 25, style: .continuous)
-                            .foregroundColor(.primaryButton)
-                        Text(Constants.signIn)
-                            .foregroundStyle(.textAccentB)
+        ContainerView {
+            VStack {
+                Image(.logo)
+                    .resizable()
+                    .frame(width: 240, height: 240)
+                VStack(spacing: 16) {
+                    Button {
+                        self.router.navigateTo(screen: .signIn)
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 25, style: .continuous)
+                                .foregroundStyle(.primaryButton)
+                            Text(Constants.signIn)
+                                .foregroundStyle(.textAccentB)
+                        }
+                        .frame(height: 50)
                     }
-                    .frame(height: 50)
-                }
-                Button {
-                    self.router.navigateTo(screen: .signUp)
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 25, style: .continuous)
-                            .foregroundColor(.secondaryButton)
-                        Text(Constants.signUp)
-                            .foregroundStyle(.textAccentW)
+                    Button {
+                        self.router.navigateTo(screen: .signUp)
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 25, style: .continuous)
+                                .foregroundStyle(.secondaryButton)
+                            Text(Constants.signUp)
+                                .foregroundStyle(.textAccentW)
+                        }
+                        .frame(height: 50)
                     }
-                    .frame(height: 50)
                 }
             }
+            .padding(.horizontal, 32)
         }
-        .padding(.horizontal, 32)
     }
 }
 

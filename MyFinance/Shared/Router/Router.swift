@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Router: ObservableObject {
+final class Router: ObservableObject {
     // MARK: - Properties
     @Published var path = NavigationPath()
     

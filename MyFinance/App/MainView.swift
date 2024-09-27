@@ -15,19 +15,40 @@ struct MainView: View {
     
     // MARK: - Body
     var body: some View {
-        ContainerView(isLoading: false) {
-            TabView(selection: self.$index) {
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house")
-                    }
-                    .tag(self.index)
-                SettingsView()
-                    .tabItem {
-                        Label("Settings", systemImage: "gear")
-                    }
-                    .tag(self.index)
-            }
+        TabView(selection: self.$index) {
+            HomeView()
+                .tabItem {
+                    Label(
+                        title: {
+                            Text("Home")
+                                .foregroundStyle(.textAccentW)
+                        },
+                        icon: {
+                            Image(systemName: "house")
+                                .foregroundStyle(.textAccentW)
+                        }
+                    )
+                }
+                .tag(self.index)
+            SettingsView()
+                .tabItem {
+                    Label(
+                        title: {
+                            Text("Settings")
+                                .foregroundStyle(.textAccentW)
+                        },
+                        icon: {
+                            Image(systemName: "gear")
+                                .foregroundStyle(.textAccentW)
+                        }
+                    )
+                }
+                .tag(self.index)
         }
+        .background(.secondaryButton)
     }
+}
+
+#Preview {
+    MainView()
 }

@@ -11,6 +11,7 @@ enum AlertType {
     case unableToProceed
     case unableToSignIn
     case unableToSignUp
+    case unableToSignUpWithApple
 }
 
 struct CustomAlert {
@@ -24,6 +25,8 @@ struct CustomAlert {
         case .unableToSignIn:
             Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
         case .unableToSignUp:
+            Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
+        case .unableToSignUpWithApple:
             Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
         }
     }

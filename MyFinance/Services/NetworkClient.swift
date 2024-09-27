@@ -59,8 +59,11 @@ extension NetworkClient {
     fileprivate func buildRequest(from url: URL, method: Endpoint.MethodType) -> URLRequest {
         var request = URLRequest(url: url)
         switch method {
-        case .GET:
+        case .GET(let token):
             request.httpMethod = "GET"
+            if let token = token {
+                request.addValue(token, forHTTPHeaderField: "Authorization")
+            }
         case .POST(let data):
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")

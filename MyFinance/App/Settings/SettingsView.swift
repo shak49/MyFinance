@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct SettingsView: View {
+    // MARK: - Properties
+    @EnvironmentObject var router: Router
+    @StateObject var model = SettingsVM()
+    
+    // MARK: - Body
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ContainerView {
+            Text("Hello, World!")
+                .foregroundStyle(.textAccentW)
+        }
     }
 }
 

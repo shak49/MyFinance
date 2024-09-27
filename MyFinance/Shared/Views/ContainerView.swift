@@ -27,31 +27,38 @@ struct ContainerView<Content: View>: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            if let isLoading = self.isLoading, isLoading {
-                ProgressView()
-                    .scaleEffect(1.5)
-                    .tint(.primaryButton)
-                    .onAppear {
-                        self.isDisabled = true
-                    }
+            Color.theme
+                .ignoresSafeArea()
+            ZStack {
+                if let isLoading = self.isLoading, isLoading {
+                    ProgressView()
+                        .scaleEffect(1.5)
+                        .tint(.primaryButton)
+                        .onAppear {
+                            self.isDisabled = true
+                        }
+                        .onDisappear {
+                            self.isDisabled = false
+                        }
+                }
+                self.content
+                    .disabled(self.isDisabled)
             }
-            self.content
-                .disabled(self.isDisabled)
-        }
-        // Alert
-        .alert(isPresented: .constant(self.alert.isPresented)) {
-            self.alert.display
-        }
-        // Toast
-        .popup(isPresented: .constant(self.toast.isPresented)) {
-            ToastView(toast: self.toast)
-        } customize: { popedView in
-            popedView
-                .type(.floater())
-                .position(.top)
-                .appearFrom(.topSlide)
-                .closeOnTapOutside(true)
-                .autohideIn(3)
+            // Alert
+            .alert(isPresented: .constant(self.alert.isPresented)) {
+                self.alert.display
+            }
+            // Toast
+            .popup(isPresented: .constant(self.toast.isPresented)) {
+                ToastView(toast: self.toast)
+            } customize: { popedView in
+                popedView
+                    .type(.floater())
+                    .position(.top)
+                    .appearFrom(.topSlide)
+                    .closeOnTapOutside(true)
+                    .autohideIn(3)
+            }
         }
     }
 }
