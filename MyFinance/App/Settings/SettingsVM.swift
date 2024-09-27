@@ -9,8 +9,12 @@ import Foundation
 
 final class SettingsVM: BaseVM {
     // MARK: - Properties
+    private var service = AuthService()
     
     // MARK: - Lifecycles
     
     // MARK: - Functions
+    func preformSignOut() {
+        
+    }
 }

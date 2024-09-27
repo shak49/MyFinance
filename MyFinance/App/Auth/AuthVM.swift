@@ -13,8 +13,7 @@ final class AuthVM: BaseVM {
     @Published var lastname: String = Constants.emptyString
     @Published var email: String = Constants.emptyString
     @Published var password: String = Constants.emptyString
-    private var auth: AuthService? = AuthService()
-    private var profile: ProfileService? = ProfileService()
+    private var service: AuthService? = AuthService()
     
     // MARK: - Lifecycles
     
@@ -23,7 +22,7 @@ final class AuthVM: BaseVM {
         let request = SignUpRequest(firstname: self.fistname, lastname: self.lastname, email: self.email, password: self.password)
         self.isLoading = true
         Task {
-            guard let result = await self.auth?.signUp(request: request) else { return }
+            guard let result = await self.service?.signUp(request: request) else { return }
             switch result {
             case .success(let response):
                 guard let token = response?.token else { return }
@@ -45,7 +44,7 @@ final class AuthVM: BaseVM {
         let request = SignInRequest(email: self.email, password: self.password)
         self.isLoading = true
         Task {
-            guard let result = await self.auth?.signIn(request: request) else { return }
+            guard let result = await self.service?.signIn(request: request) else { return }
             switch result {
             case .success(let response):
                 guard let token = response?.token else { return }
@@ -66,7 +65,7 @@ final class AuthVM: BaseVM {
         let request = AppleSignInRequest(token: token, email: self.email, appleId: appleId)
         self.isLoading = true
         Task {
-            guard let result = await self.auth?.appleSignIn(request: request) else { return }
+            guard let result = await self.service?.appleSignIn(request: request) else { return }
             switch result {
             case .success(let response):
                 guard let token = response?.token else { return }
