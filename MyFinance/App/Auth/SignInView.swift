@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 struct SignInView: View {
     // MARK: - Properties
@@ -37,7 +38,7 @@ struct SignInView: View {
                             self.model.performGoogleSignIn()
                         }
                         ButtonView(type: .sso) {
-                            self.model.performAppleSignIn()
+                            //self.model.performAppleSignIn(token: <#String?#>, appleId: <#String?#>, router: self.router)
                         }
                     }
                 }

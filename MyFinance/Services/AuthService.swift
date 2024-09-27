@@ -14,26 +14,36 @@ final class AuthService {
     // MARK: - Lifecycles
     
     // MARK: - Functions
-    func signIn(request: SignInRequest?) async -> Result<SignInResponse?, Error>? {
+    func signIn(request: SignInRequest?) async -> Result<AuthResponse?, Error>? {
         guard let request = request else { return nil }
         do {
             let data = try JSONEncoder().encode(request)
-            let response = try await self.client.request(endpoint: .signIn(data: data), type: SignInResponse.self)
+            let response = try await self.client.request(endpoint: .signIn(data: data), type: AuthResponse.self)
             return .success(response)
         } catch let error {
             return .failure(error)
         }
     }
     
-    func signUp(request: SignUpRequest?) async -> Result<SignUpResponse?, Error>? {
+    func signUp(request: SignUpRequest?) async -> Result<AuthResponse?, Error>? {
         guard let request = request else { return nil }
         do {
             let data = try JSONEncoder().encode(request)
-            let response = try await self.client.request(endpoint: .signUp(data: data), type: SignUpResponse.self)
+            let response = try await self.client.request(endpoint: .signUp(data: data), type: AuthResponse.self)
             return .success(response)
         } catch let error {
             return .failure(error)
         }
     }
     
+    func appleSignIn(request: AppleSignInRequest?) async -> Result<AuthResponse?, Error>? {
+        guard let request = request else { return nil }
+        do {
+            let data = try JSONEncoder().encode(request)
+            let response = try await self.client.request(endpoint: .appleSignIn(data: data), type: AuthResponse.self)
+            return .success(response)
+        } catch let error {
+            return .failure(error)
+        }
+    }
 }

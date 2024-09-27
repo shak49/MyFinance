@@ -14,6 +14,7 @@ struct HomeView: View {
     var body: some View {
         ContainerView {
             Text("Welcome to Home screen!")
+                .foregroundStyle(.textAccentW)
         }
     }
 }
