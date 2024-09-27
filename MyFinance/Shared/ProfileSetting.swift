@@ -17,11 +17,8 @@ final class ProfileSetting {
     private init() {}
     
     // MARK: - Functions
-    func getCurrentUser() {
-        guard let token = self.accessToken else { return }
-        Task {
-            let user = await self.service.currentUser(token: token)
-            print(user)
-        }
+    func getCurrentUser() async -> UserProfile? {
+        guard let token = self.accessToken else { return nil }
+        return await self.service.currentUser(token: token)
     }
 }

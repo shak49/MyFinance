@@ -37,3 +37,7 @@ struct AuthResponse: Codable {
     
     let token: String?
 }
+
+struct SignOutResponse: Codable {
+    let message: String?
+}

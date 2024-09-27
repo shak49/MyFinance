@@ -30,6 +30,9 @@
 		6DC3B0602CA4CB4F004CE734 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3B05F2CA4CB4F004CE734 /* ProfileService.swift */; };
 		6DC3B0622CA627C6004CE734 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3B0612CA627C6004CE734 /* UserProfile.swift */; };
 		6DC3B0642CA63820004CE734 /* SettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3B0632CA63820004CE734 /* SettingsVM.swift */; };
+		6DC3B0662CA71341004CE734 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3B0652CA71341004CE734 /* HomeVM.swift */; };
+		6DC3B0692CA74682004CE734 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3B0682CA74682004CE734 /* ProfileView.swift */; };
+		6DC3B06B2CA74760004CE734 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3B06A2CA74760004CE734 /* ProfileVM.swift */; };
 		6DD43F872C97837F00476743 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F862C97837F00476743 /* Endpoint.swift */; };
 		6DD43F892C98D77C00476743 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F882C98D77C00476743 /* NetworkClient.swift */; };
 		6DD43F8B2C98DF7600476743 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F8A2C98DF7500476743 /* AuthService.swift */; };
@@ -66,6 +69,9 @@
 		6DC3B05F2CA4CB4F004CE734 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		6DC3B0612CA627C6004CE734 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		6DC3B0632CA63820004CE734 /* SettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVM.swift; sourceTree = "<group>"; };
+		6DC3B0652CA71341004CE734 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
+		6DC3B0682CA74682004CE734 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		6DC3B06A2CA74760004CE734 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		6DD43F862C97837F00476743 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		6DD43F882C98D77C00476743 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		6DD43F8A2C98DF7500476743 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 				6D5F90812C8CC11A0005CC5B /* MainView.swift */,
 				6D5F90722C8B674A0005CC5B /* Auth */,
 				6D5F907E2C8CBA2E0005CC5B /* Home */,
+				6DC3B0672CA7461D004CE734 /* Profile */,
 				6D5F90832C8CD3420005CC5B /* Settings */,
 			);
 			path = App;
@@ -208,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				6D5F907C2C8CBA230005CC5B /* HomeView.swift */,
+				6DC3B0652CA71341004CE734 /* HomeVM.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -219,6 +227,15 @@
 				6DC3B0632CA63820004CE734 /* SettingsVM.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		6DC3B0672CA7461D004CE734 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				6DC3B0682CA74682004CE734 /* ProfileView.swift */,
+				6DC3B06A2CA74760004CE734 /* ProfileVM.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +326,7 @@
 				6DD43F8B2C98DF7600476743 /* AuthService.swift in Sources */,
 				6D5F907D2C8CBA240005CC5B /* HomeView.swift in Sources */,
 				6DC3B0642CA63820004CE734 /* SettingsVM.swift in Sources */,
+				6DC3B06B2CA74760004CE734 /* ProfileVM.swift in Sources */,
 				6D5F90772C8B87BD0005CC5B /* CustomButtonView.swift in Sources */,
 				6D5F90332C83B9AE0005CC5B /* RouterView.swift in Sources */,
 				6D5F90312C83B9AE0005CC5B /* MyFinanceApp.swift in Sources */,
@@ -319,10 +337,12 @@
 				6DD43F892C98D77C00476743 /* NetworkClient.swift in Sources */,
 				6DD43F8D2C98E02200476743 /* Auth.swift in Sources */,
 				6D5F90492C83E9E70005CC5B /* InitialView.swift in Sources */,
+				6DC3B0692CA74682004CE734 /* ProfileView.swift in Sources */,
 				6D5F90432C83C9050005CC5B /* Constants.swift in Sources */,
 				6D5F90822C8CC11A0005CC5B /* MainView.swift in Sources */,
 				6DD43F872C97837F00476743 /* Endpoint.swift in Sources */,
 				6D5F90802C8CBA950005CC5B /* SignUpView.swift in Sources */,
+				6DC3B0662CA71341004CE734 /* HomeVM.swift in Sources */,
 				6D5F90452C83CA470005CC5B /* Screen.swift in Sources */,
 				6D5F905E2C853A4C0005CC5B /* BaseVM.swift in Sources */,
 			);

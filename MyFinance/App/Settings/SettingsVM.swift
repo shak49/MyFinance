@@ -12,9 +12,12 @@ final class SettingsVM: BaseVM {
     private var service = AuthService()
     
     // MARK: - Lifecycles
-    
+
     // MARK: - Functions
-    func preformSignOut() {
-        
+    @MainActor func preformSignOut(router: Router) {
+        Task {
+            await self.service.signOut()
+            router.navigateTo(screen: .signIn)
+        }
     }
 }

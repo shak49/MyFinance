@@ -46,4 +46,12 @@ final class AuthService {
             return .failure(error)
         }
     }
+    
+    func signOut() async {
+        do {
+            let response = try await self.client.request(endpoint: .signOut, type: SignOutResponse.self)
+        } catch {
+            fatalError("Error: \(error.localizedDescription)")
+        }
+    }
 }

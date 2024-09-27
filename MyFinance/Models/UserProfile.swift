@@ -10,6 +10,7 @@ import Foundation
 struct UserProfile: Codable {
     enum CodingKeys: String, CodingKey {
         case id = "_id"
+        case avator = "avator_color"
         case firstname, lastname, email
     }
     
@@ -17,4 +18,5 @@ struct UserProfile: Codable {
     let firstname: String
     let lastname: String
     let email: String
+    let avator: String
 }

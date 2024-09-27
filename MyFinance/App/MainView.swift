@@ -46,9 +46,6 @@ struct MainView: View {
                 .tag(self.index)
         }
         .background(.secondaryButton)
-        .onAppear {
-            ProfileSetting.shared.getCurrentUser()
-        }
     }
 }
 

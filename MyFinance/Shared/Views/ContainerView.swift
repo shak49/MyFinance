@@ -37,6 +37,9 @@ struct ContainerView<Content: View>: View {
                         .onAppear {
                             self.isDisabled = true
                         }
+                        .onDisappear {
+                            self.isDisabled = false
+                        }
                 }
                 self.content
                     .disabled(self.isDisabled)

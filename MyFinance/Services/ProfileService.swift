@@ -14,12 +14,13 @@ final class ProfileService {
     // MARK: - Lifecycles
     
     // MARK: - Functions
-    func currentUser(token: String) async -> UserProfile {
+    func currentUser(token: String) async -> UserProfile? {
         do {
             let user = try await self.client.request(endpoint: .currentUser(token: token), type: UserProfile.self)
             return user
         } catch {
-            fatalError("ERROR: \(error.localizedDescription)")
+            print("ERROR: \(error.localizedDescription)")
         }
+        return nil
     }
 }
