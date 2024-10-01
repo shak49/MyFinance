@@ -14,11 +14,13 @@ final class ProfileVM: BaseVM {
     // MARK: - Lifecycles
     override init() {
         super.init()
-        self.getFullname()
+        Task {
+            await self.getFullname()
+        }
     }
     
     // MARK: - Functions
-    func getFullname() {
+    @MainActor func getFullname() {
         Task {
             guard let firstname = await ProfileSetting.shared.getCurrentUser()?.firstname,
                   let lastname = await ProfileSetting.shared.getCurrentUser()?.lastname else { return }
