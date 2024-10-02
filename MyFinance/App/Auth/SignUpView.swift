@@ -21,7 +21,7 @@ struct SignUpView: View {
                 VStack(spacing: 16) {
                     CustomTextField(text: self.$model.fistname, placeholder: Constants.placeholderFirstname, type: .normal)
                     CustomTextField(text: self.$model.lastname, placeholder: Constants.placeholderLastname, type: .normal)
-                    CustomTextField(text: self.$model.email, placeholder: Constants.placeholderEmail, type: .email)
+                    CustomTextField(text: self.$model.email, placeholder: Constants.placeholderEmail, type: .email, error: self.model.errorMessage)
                     CustomTextField(text: self.$model.password, placeholder: Constants.placeholderPassword, type: .password)
                 }
                 Spacer()

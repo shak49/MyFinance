@@ -35,7 +35,6 @@ final class NetworkClient {
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let response = response as? HTTPURLResponse, (200...300) ~= response.statusCode else {
             let statusCode = (response as! HTTPURLResponse).statusCode
-            let error = (response as! HTTPURLResponse).mimeType
             throw NetworkError.error(code: statusCode)
         }
         guard let result = try? JSONDecoder().decode(type, from: data) else {

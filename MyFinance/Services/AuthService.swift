@@ -31,7 +31,7 @@ final class AuthService {
             let data = try JSONEncoder().encode(request)
             let response = try await self.client.request(endpoint: .signUp(data: data), type: AuthResponse.self)
             return .success(response)
-        } catch let error {
+        } catch {
             return .failure(error)
         }
     }
