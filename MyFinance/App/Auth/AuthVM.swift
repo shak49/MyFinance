@@ -52,9 +52,7 @@ final class AuthVM: BaseVM {
                 router.navigateTo(screen: .main)
             case .failure(let error):
                 self.isLoading = false
-                self.alert.type = .unableToSignUp
-                self.alert.message = error.localizedDescription
-                self.alert.isPresented = true
+                self.errorMessage = error.localizedDescription
             }
         }
     }

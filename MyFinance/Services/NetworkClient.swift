@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum NetworkError: LocalizedError {
     case invalidURL
     case error(code: Int)
     case unableToDecode
@@ -17,7 +17,7 @@ enum NetworkError: Error {
         case .invalidURL:
             return "This URL is not valid."
         case .error(let code):
-            return "Error with status code: \(code)."
+            return "\(code)"
         case .unableToDecode:
             return "Unable to decode."
         }
