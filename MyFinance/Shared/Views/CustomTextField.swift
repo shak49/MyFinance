@@ -76,27 +76,19 @@ struct CustomTextField: View {
                 }
             }
         } else {
-            VStack(alignment: .leading) {
-                TextField(text: self.text) {
-                    Text(self.placeholder)
-                        .foregroundStyle(.gray)
-                }
-                .textInputAutocapitalization(self.type == .email ? .never : .sentences)
-                .padding(.horizontal, 10)
-                .frame(height: self.height)
-                .background(.textField)
-                .opacity(0.7)
-                .shadow(color: .black.opacity(0.3), radius: 2, x: -2, y: -2)
-                .shadow(color: .black, radius: 2, x: 2, y: 2)
-                .foregroundStyle(.textAccentW)
-                .cornerRadius(self.radius)
-                Label {
-                    Text(self.type == .email ? self.error : Constants.emptyString)
-                        .foregroundStyle(.red)
-                } icon: {
-                    
-                }
+            TextField(text: self.text) {
+                Text(self.placeholder)
+                    .foregroundStyle(.gray)
             }
+            .textInputAutocapitalization(self.type == .email ? .never : .sentences)
+            .padding(.horizontal, 10)
+            .frame(height: self.height)
+            .background(.textField)
+            .opacity(0.7)
+            .shadow(color: .black.opacity(0.3), radius: 2, x: -2, y: -2)
+            .shadow(color: .black, radius: 2, x: 2, y: 2)
+            .foregroundStyle(.textAccentW)
+            .cornerRadius(self.radius)
         }
     }
 }

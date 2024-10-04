@@ -25,7 +25,7 @@ struct CustomAlert {
         case .unableToSignIn:
             Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
         case .unableToSignUp:
-            Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
+            Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonOk)))
         case .unableToSignUpWithApple:
             Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
         }

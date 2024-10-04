@@ -13,7 +13,6 @@ final class AuthVM: BaseVM {
     @Published var lastname: String = Constants.emptyString
     @Published var email: String = Constants.emptyString
     @Published var password: String = Constants.emptyString
-    @Published var errorMessage: String = Constants.emptyString
     private var service: AuthService? = AuthService()
     
     // MARK: - Lifecycles
@@ -34,7 +33,9 @@ final class AuthVM: BaseVM {
                 router.navigateTo(screen: .main)
             case .failure(let error):
                 self.isLoading = false
-                self.errorMessage = error.localizedDescription
+                self.alert.type = .unableToSignUp
+                self.alert.message = error.description
+                self.alert.isPresented = true
             }
         }
     }
@@ -52,7 +53,9 @@ final class AuthVM: BaseVM {
                 router.navigateTo(screen: .main)
             case .failure(let error):
                 self.isLoading = false
-                self.errorMessage = error.localizedDescription
+                self.alert.type = .unableToSignIn
+                self.alert.message = error.description
+                self.alert.isPresented = true
             }
         }
     }

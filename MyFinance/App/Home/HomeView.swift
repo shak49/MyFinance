@@ -14,7 +14,7 @@ struct HomeView: View {
     
     // MARK: - Body
     var body: some View {
-        ContainerView {
+        ContainerView(toast: self.model.toast) {
             VStack {
                 HStack {
                     Button {

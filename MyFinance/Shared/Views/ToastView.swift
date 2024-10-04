@@ -25,7 +25,7 @@ struct ToastView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundStyle(.theme)
                 HStack {
-                    Text(self.toast.message)
+                    Text(self.toast.message ?? Constants.emptyString)
                         .foregroundStyle(self.toast.color)
                         .font(.subheadline)
                         .multilineTextAlignment(.leading)
@@ -36,6 +36,7 @@ struct ToastView: View {
                         .foregroundStyle(self.toast.color)
                 }
                 .padding(.horizontal, 20)
+                .padding(.vertical, 10)
             }
             .overlay {
                 RoundedRectangle(cornerRadius: 10)

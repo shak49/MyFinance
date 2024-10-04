@@ -18,20 +18,7 @@ enum ToastType {
 struct Toast: Equatable {
     var type: ToastType
     var isPresented: Bool
-    var message: String {
-        switch self.type {
-        case .info:
-            Constants.toastInfoMessage
-        case .success:
-            Constants.toastWelcomeMessage
-        case .warning:
-            Constants.toastWarningMessage
-        case .error:
-            Constants.toastSomethingWentWrongMessage
-        case .newFeature:
-            Constants.toastNewFeatureMessage
-        }
-    }
+    var message: String?
     var color: Color {
         switch self.type {
         case .info:

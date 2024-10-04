@@ -31,12 +31,22 @@ struct Constants {
     static let iconWarning = "exclamationmark.triangle"
     static let iconError = "xmark.circle"
     static let iconPlay = "play.circle"
+    // MARK: - Network Errors
+    static let networkErrorInvlaidURLMessage = "This URL is not valid."
+    static let networkErrorInvlaidRequestMessage = "This request is not valid."
+    static let networkErrorUnableToDecodeMessage = "Unable to decode."
     // MARK: - Placeholder Texts
     static let placeholderFirstname = "Enter your first name..."
     static let placeholderLastname = "Enter your last name..."
     static let placeholderEmail = "Enter your email..."
     static let placeholderPassword = "Enter your password..."
-    // MARK: - Toast Message
+    // MARK: - Status Code Messages
+    static let statusCodeEmailExistsMessage = "This email already exists!"
+    static let statusCodeInvalidCredentials = "Invalid credentials!"
+    static let statusCodeInternalServerErrorMessage = "Internal server error!"
+    static let statusCodeUnableToVerifyFieldsMessage = "Unable to verify fields!"
+    static let statusCodeUserDoesNotExistMessage = "This user doesn't exist!"
+    // MARK: - Toast Messages
     static let toastInfoMessage = "This feature is currently not available."
     static let toastWelcomeMessage = "Welcome to myFinance. We are pleased to have you."
     static let toastWarningMessage = ""

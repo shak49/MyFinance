@@ -19,7 +19,6 @@ extension Endpoint {
     enum MethodType {
         case GET(token: String? = nil)
         case POST(data: Data?)
-        case PUT(data: Data?)
     }
 }
 
