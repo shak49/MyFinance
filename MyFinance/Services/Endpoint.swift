@@ -11,15 +11,15 @@ enum Endpoint {
     case signUp(data: Data?)
     case signIn(data: Data?)
     case appleSignIn(data: Data?)
-    case signOut
+    case googleSignIn(token: String)
     case currentUser(token: String)
+    case signOut
 }
 
 extension Endpoint {
     enum MethodType {
         case GET(token: String? = nil)
         case POST(data: Data?)
-        case PUT(data: Data?)
     }
 }
 
@@ -35,10 +35,12 @@ extension Endpoint {
             return "/auth/sign-in"
         case .appleSignIn:
             return "/auth/apple"
-        case .signOut:
-            return "/auth/sign-out"
+        case .googleSignIn:
+            return "/auth/google"
         case .currentUser:
             return "/profile/current-user"
+        case .signOut:
+            return "/auth/sign-out"
         }
     }
     var method: MethodType {
@@ -49,16 +51,18 @@ extension Endpoint {
             return .POST(data: data)
         case .appleSignIn(let data):
             return .POST(data: data)
-        case .signOut:
-            return .GET()
+        case .googleSignIn(let token):
+            return .GET(token: token)
         case .currentUser(let token):
             return .GET(token: token)
+        case .signOut:
+            return .GET()
         }
     }
     var queryItems: [URLQueryItem] {
         var items: [URLQueryItem] = []
         switch self {
-        case .signUp, .signIn, .appleSignIn, .signOut, .currentUser:
+        case .signUp, .signIn, .appleSignIn, .googleSignIn, .currentUser, .signOut:
             break
         }
         return items

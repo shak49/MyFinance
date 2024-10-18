@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import PopupView
 
 struct ContainerView<Content: View>: View {
     // MARK: - Properties
@@ -49,16 +48,6 @@ struct ContainerView<Content: View>: View {
                 self.alert.display
             }
             // Toast
-            .popup(isPresented: .constant(self.toast.isPresented)) {
-                ToastView(toast: self.toast)
-            } customize: { popedView in
-                popedView
-                    .type(.floater())
-                    .position(.top)
-                    .appearFrom(.topSlide)
-                    .closeOnTapOutside(true)
-                    .autohideIn(3)
-            }
         }
     }
 }

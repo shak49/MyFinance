@@ -72,9 +72,22 @@ extension ButtonView {
         Button {
             self.action()
         } label: {
-            Circle()
-                .frame(width: 34)
-                .foregroundStyle(.gray)
+            ZStack {
+                Circle()
+                    .frame(height: 34)
+                    .foregroundStyle(.white)
+                Image(self.icon)
+                    .resizable()
+                    .frame(width: 34, height: 34)
+                    .background(.white)
+                    .cornerRadius(17)
+            }
         }
+    }
+}
+
+#Preview {
+    ButtonView(type: .sso, label: "", icon: "apple") {
+        
     }
 }

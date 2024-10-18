@@ -10,6 +10,7 @@ import SwiftUI
 enum AlertType {
     case unableToProceed
     case unableToSignIn
+    case unableToSignInWithGoogle
     case unableToSignUp
     case unableToSignUpWithApple
 }
@@ -24,8 +25,10 @@ struct CustomAlert {
             Alert(title: Text(Constants.alertErrorTitle), message: Text(Constants.alertCannotProceedMessage), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
         case .unableToSignIn:
             Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
-        case .unableToSignUp:
+        case .unableToSignInWithGoogle:
             Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
+        case .unableToSignUp:
+            Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonOk)))
         case .unableToSignUpWithApple:
             Alert(title: Text(Constants.alertErrorTitle), message: Text(self.message), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
         }
