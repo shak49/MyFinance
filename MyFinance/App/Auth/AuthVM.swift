@@ -9,11 +9,11 @@ import Foundation
 
 final class AuthVM: BaseVM {
     // MARK: - Properties
+    private var service: AuthService? = AuthService()
     @Published var fistname: String = Constants.emptyString
     @Published var lastname: String = Constants.emptyString
     @Published var email: String = Constants.emptyString
     @Published var password: String = Constants.emptyString
-    private var service: AuthService? = AuthService()
     
     // MARK: - Lifecycles
     
@@ -81,7 +81,24 @@ final class AuthVM: BaseVM {
         }
     }
     
-    func performGoogleSignIn() {
-        
+    @MainActor func performGoogleSignIn(router: Router) {
+        self.isLoading = true
+        Task {
+            guard let idToken = await GoogleAuthHandler.shared.signIn() else { return }
+            self.isLoading = false
+            guard let result = await self.service?.googleSignIn(token: idToken) else { return }
+            switch result {
+            case .success(let response):
+                guard let token = response?.token else { return }
+                self.isLoading = false
+                ProfileSetting.shared.accessToken = token
+                router.navigateTo(screen: .main)
+            case .failure(let error):
+                self.isLoading = false
+                self.alert.type = .unableToSignInWithGoogle
+                self.alert.message = error.localizedDescription
+                self.alert.isPresented = true
+            }
+        }
     }
 }

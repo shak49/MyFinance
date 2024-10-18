@@ -14,22 +14,22 @@ final class AuthService {
     // MARK: - Lifecycles
     
     // MARK: - Functions
-    func signIn(request: SignInRequest?) async -> Result<AuthResponse?, NetworkError>? {
+    func signUp(request: SignUpRequest?) async -> Result<AuthResponse?, NetworkError>? {
         guard let request = request else { return nil }
         do {
             let data = try JSONEncoder().encode(request)
-            let response = try await self.client.request(endpoint: .signIn(data: data), type: AuthResponse.self)
+            let response = try await self.client.request(endpoint: .signUp(data: data), type: AuthResponse.self)
             return .success(response)
         } catch let error {
             return .failure(error as? NetworkError ?? .none)
         }
     }
     
-    func signUp(request: SignUpRequest?) async -> Result<AuthResponse?, NetworkError>? {
+    func signIn(request: SignInRequest?) async -> Result<AuthResponse?, NetworkError>? {
         guard let request = request else { return nil }
         do {
             let data = try JSONEncoder().encode(request)
-            let response = try await self.client.request(endpoint: .signUp(data: data), type: AuthResponse.self)
+            let response = try await self.client.request(endpoint: .signIn(data: data), type: AuthResponse.self)
             return .success(response)
         } catch let error {
             return .failure(error as? NetworkError ?? .none)
@@ -47,11 +47,21 @@ final class AuthService {
         }
     }
     
+    func googleSignIn(token: String?) async -> Result<AuthResponse?, NetworkError>? {
+        guard let token = token else { return nil }
+        do {
+            let response = try await self.client.request(endpoint: .googleSignIn(token: token), type: AuthResponse.self)
+            return .success(response)
+        } catch let error {
+            return .failure(error as? NetworkError ?? .none)
+        }
+    }
+    
     func signOut() async {
         do {
             let response = try await self.client.request(endpoint: .signOut, type: SignOutResponse.self)
         } catch {
-            fatalError("Error: \(error.localizedDescription)")
+            print("ERROR: \(error.localizedDescription)")
         }
     }
 }
