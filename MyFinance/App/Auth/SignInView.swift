@@ -34,11 +34,11 @@ struct SignInView: View {
                         }
                     }
                     HStack(spacing: 32) {
-                        ButtonView(type: .sso, icon: "google") {
+                        ButtonView(type: .sso(.google)) {
                             self.model.performGoogleSignIn(router: self.router)
                         }
-                        ButtonView(type: .sso) {
-                            
+                        ButtonView(type: .sso(.apple)) {
+                            self.model.performAppleSignIn(router: self.router)
                         }
                     }
                 }

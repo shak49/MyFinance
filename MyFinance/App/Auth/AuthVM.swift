@@ -10,6 +10,8 @@ import Foundation
 final class AuthVM: BaseVM {
     // MARK: - Properties
     private var service: AuthService? = AuthService()
+    private var profileSetting = ProfileSetting.shared
+    private var ssoUtility = SSOUtility.shared
     @Published var fistname: String = Constants.emptyString
     @Published var lastname: String = Constants.emptyString
     @Published var email: String = Constants.emptyString
@@ -27,7 +29,7 @@ final class AuthVM: BaseVM {
             case .success(let response):
                 guard let token = response?.token else { return }
                 self.isLoading = false
-                ProfileSetting.shared.accessToken = token
+                self.profileSetting.accessToken = token
                 self.toast.type = .success
                 self.toast.isPresented = true
                 router.navigateTo(screen: .main)
@@ -49,7 +51,7 @@ final class AuthVM: BaseVM {
             case .success(let response):
                 guard let token = response?.token else { return }
                 self.isLoading = false
-                ProfileSetting.shared.accessToken = token
+                self.profileSetting.accessToken = token
                 router.navigateTo(screen: .main)
             case .failure(let error):
                 self.isLoading = false
@@ -60,38 +62,25 @@ final class AuthVM: BaseVM {
         }
     }
     
-    @MainActor func performAppleSignIn(token: String?, appleId: String?, router: Router) {
-        guard let token = token, let appleId = appleId else { return }
-        let request = AppleSignInRequest(token: token, email: self.email, appleId: appleId)
+    @MainActor func performAppleSignIn(router: Router) {
         self.isLoading = true
         Task {
-            guard let result = await self.service?.appleSignIn(request: request) else { return }
-            switch result {
-            case .success(let response):
-                guard let token = response?.token else { return }
-                self.isLoading = false
-                ProfileSetting.shared.accessToken = token
-                router.navigateTo(screen: .main)
-            case .failure(let error):
-                self.isLoading = false
-                self.alert.type = .unableToSignUpWithApple
-                self.alert.message = error.localizedDescription
-                self.alert.isPresented = true
-            }
+            await self.ssoUtility.initiateAppleAuth()
+            guard let credentials = self.ssoUtility.appleCredentials else { return }
+            self.isLoading = false
         }
     }
     
     @MainActor func performGoogleSignIn(router: Router) {
         self.isLoading = true
         Task {
-            guard let idToken = await GoogleAuthHandler.shared.signIn() else { return }
-            self.isLoading = false
+            guard let idToken = await self.ssoUtility.initiateGoogleAuth() else { return }
             guard let result = await self.service?.googleSignIn(token: idToken) else { return }
             switch result {
             case .success(let response):
                 guard let token = response?.token else { return }
                 self.isLoading = false
-                ProfileSetting.shared.accessToken = token
+                self.profileSetting.accessToken = token
                 router.navigateTo(screen: .main)
             case .failure(let error):
                 self.isLoading = false
