@@ -6,25 +6,19 @@
 //
 
 import SwiftUI
-
-enum ButtonType {
-    case primary
-    case secondary
-    case sso
-}
+import UIKit
+import AuthenticationServices
 
 struct ButtonView: View {
     // MARK: - Properties
     let type: ButtonType
     let label: String
-    let icon: String
     let action: () -> Void
     
     // MARK: - Lifecycles
-    init(type: ButtonType, label: String? = nil, icon: String? = nil, action: @escaping () -> Void) {
+    init(type: ButtonType, label: String? = nil, action: @escaping () -> Void) {
         self.type = type
         self.label = label ?? ""
-        self.icon = icon ?? ""
         self.action = action
     }
     
@@ -72,22 +66,11 @@ extension ButtonView {
         Button {
             self.action()
         } label: {
-            ZStack {
-                Circle()
-                    .frame(height: 34)
-                    .foregroundStyle(.white)
-                Image(self.icon)
-                    .resizable()
-                    .frame(width: 34, height: 34)
-                    .background(.white)
-                    .cornerRadius(17)
-            }
+            self.type.ssoType?.label
         }
     }
 }
 
 #Preview {
-    ButtonView(type: .sso, label: "", icon: "apple") {
-        
-    }
+    ButtonView(type: .sso(.apple), label: "") {}
 }
