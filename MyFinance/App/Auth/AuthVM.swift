@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import AuthenticationServices
+import GoogleSignIn
 
 final class AuthVM: BaseVM {
     // MARK: - Properties
     private var service: AuthService? = AuthService()
     private var profileSetting = ProfileSetting.shared
     private var ssoUtility = SSOUtility.shared
+    private var currentNonce: String? = Constants.emptyString
     @Published var fistname: String = Constants.emptyString
     @Published var lastname: String = Constants.emptyString
     @Published var email: String = Constants.emptyString
@@ -64,17 +67,13 @@ final class AuthVM: BaseVM {
     
     @MainActor func performAppleSignIn(router: Router) {
         self.isLoading = true
-        Task {
-            await self.ssoUtility.initiateAppleAuth()
-            guard let credentials = self.ssoUtility.appleCredentials else { return }
-            self.isLoading = false
-        }
+        self.initiateAppleAuth()
     }
     
     @MainActor func performGoogleSignIn(router: Router) {
         self.isLoading = true
         Task {
-            guard let idToken = await self.ssoUtility.initiateGoogleAuth() else { return }
+            guard let idToken = await self.initiateGoogleAuth() else { return }
             guard let result = await self.service?.googleSignIn(token: idToken) else { return }
             switch result {
             case .success(let response):
@@ -89,5 +88,50 @@ final class AuthVM: BaseVM {
                 self.alert.isPresented = true
             }
         }
+    }
+}
+
+extension AuthVM {
+    @MainActor private func initiateAppleAuth() {
+        let nonce = self.ssoUtility.randomNonceString()
+        self.currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.email, .fullName]
+        request.nonce = self.ssoUtility.sha256(nonce)
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.performRequests()
+    }
+    
+    @MainActor private func initiateGoogleAuth() async -> String? {
+        guard let viewController = self.ssoUtility.topViewController() else { return nil }
+        do {
+            let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: viewController)
+            let idToken = result.user.idToken
+            return idToken?.tokenString
+        } catch let error {
+            print("Error: \(error.localizedDescription)")
+        }
+        return nil
+    }
+}
+
+extension AuthVM: ASAuthorizationControllerDelegate {
+    @MainActor func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIdCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            Task {
+                guard let nonce = self.currentNonce else { return }
+                guard let appleId = appleIdCredential.identityToken else { return }
+                guard let idToken = String(data: appleId, encoding: .utf8) else { return }
+                await self.authenticateWithApple(nonce: nonce, idToken: idToken)
+            }
+        }
+    }
+}
+
+extension AuthVM {
+    private func authenticateWithApple(nonce: String?, idToken: String?) async {
+        guard let nonce = nonce, let idToken = idToken else { return }
     }
 }

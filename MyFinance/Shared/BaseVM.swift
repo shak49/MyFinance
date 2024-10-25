@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BaseVM: ObservableObject {
+class BaseVM: NSObject, ObservableObject {
     // MARK: - Properties
     @Published var isLoading: Bool = false
     @Published var alert: CustomAlert = CustomAlert(type: .unableToProceed, message: Constants.emptyString, isPresented: false)
