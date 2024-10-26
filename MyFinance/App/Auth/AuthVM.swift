@@ -14,7 +14,7 @@ final class AuthVM: BaseVM {
     private var service: AuthService? = AuthService()
     private var profileSetting = ProfileSetting.shared
     private var ssoUtility = SSOUtility.shared
-    private var currentNonce: String? = Constants.emptyString
+    private var currentNonce: String?
     @Published var fistname: String = Constants.emptyString
     @Published var lastname: String = Constants.emptyString
     @Published var email: String = Constants.emptyString
@@ -119,19 +119,20 @@ extension AuthVM {
 
 extension AuthVM: ASAuthorizationControllerDelegate {
     @MainActor func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        if let appleIdCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            Task {
+        Task {
+            if let appleIdCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
                 guard let nonce = self.currentNonce else { return }
                 guard let appleId = appleIdCredential.identityToken else { return }
                 guard let idToken = String(data: appleId, encoding: .utf8) else { return }
-                await self.authenticateWithApple(nonce: nonce, idToken: idToken)
+                await self.appleAuthCallback(nonce: nonce, idToken: idToken)
             }
         }
     }
 }
 
 extension AuthVM {
-    private func authenticateWithApple(nonce: String?, idToken: String?) async {
+    @MainActor private func appleAuthCallback(nonce: String?, idToken: String?) async {
         guard let nonce = nonce, let idToken = idToken else { return }
+        // Make a connection to the server and send nonce and idToken and receive the access_token
     }
 }
