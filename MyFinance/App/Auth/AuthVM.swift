@@ -19,6 +19,7 @@ final class AuthVM: BaseVM {
     @Published var lastname: String = Constants.emptyString
     @Published var email: String = Constants.emptyString
     @Published var password: String = Constants.emptyString
+    @Published var recoveryEmail: String = Constants.emptyString
     
     // MARK: - Lifecycles
     
@@ -88,6 +89,10 @@ final class AuthVM: BaseVM {
                 self.alert.isPresented = true
             }
         }
+    }
+    
+    @MainActor func performPasswordRecovery() {
+        
     }
 }
 
