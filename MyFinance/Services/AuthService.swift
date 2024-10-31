@@ -36,11 +36,10 @@ final class AuthService {
         }
     }
     
-    func appleSignIn(request: AppleSignInRequest?) async -> Result<AuthResponse?, NetworkError>? {
-        guard let request = request else { return nil }
+    func appleSignIn(token: String?) async -> Result<AuthResponse?, NetworkError>? {
+        guard let token = token else { return nil }
         do {
-            let data = try JSONEncoder().encode(request)
-            let response = try await self.client.request(endpoint: .appleSignIn(data: data), type: AuthResponse.self)
+            let response = try await self.client.request(endpoint: .appleSignIn(token: token), type: AuthResponse.self)
             return .success(response)
         } catch let error {
             return .failure(error as? NetworkError ?? .none)

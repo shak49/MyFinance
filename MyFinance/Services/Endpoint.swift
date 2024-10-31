@@ -10,7 +10,7 @@ import Foundation
 enum Endpoint {
     case signUp(data: Data?)
     case signIn(data: Data?)
-    case appleSignIn(data: Data?)
+    case appleSignIn(token: String)
     case googleSignIn(token: String)
     case currentUser(token: String)
     case signOut
@@ -49,8 +49,8 @@ extension Endpoint {
             return .POST(data: data)
         case .signIn(let data):
             return .POST(data: data)
-        case .appleSignIn(let data):
-            return .POST(data: data)
+        case .appleSignIn(let token):
+            return .GET(token: token)
         case .googleSignIn(let token):
             return .GET(token: token)
         case .currentUser(let token):

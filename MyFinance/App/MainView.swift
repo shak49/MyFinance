@@ -15,7 +15,7 @@ struct MainView: View {
     
     // MARK: - Body
     var body: some View {
-        CustomTabView(selectedTab: self.$tab)
+        MyFinanceCustomTabView(selectedTab: self.$tab)
     }
 }
 

@@ -65,7 +65,7 @@ final class AuthVM: BaseVM {
         }
     }
     
-    @MainActor func performAppleSignIn(router: Router) {
+    @MainActor func performAppleSignIn() {
         self.isLoading = true
         self.initiateAppleAuth()
     }
@@ -124,15 +124,27 @@ extension AuthVM: ASAuthorizationControllerDelegate {
                 guard let nonce = self.currentNonce else { return }
                 guard let appleId = appleIdCredential.identityToken else { return }
                 guard let idToken = String(data: appleId, encoding: .utf8) else { return }
-                await self.appleAuthCallback(nonce: nonce, idToken: idToken)
+                await self.appleAuthCallback(idToken: idToken)
             }
         }
     }
 }
 
 extension AuthVM {
-    @MainActor private func appleAuthCallback(nonce: String?, idToken: String?) async {
-        guard let nonce = nonce, let idToken = idToken else { return }
-        // Make a connection to the server and send nonce and idToken and receive the access_token
+    @MainActor private func appleAuthCallback(idToken: String?) async {
+        guard let idToken = idToken else { return }
+        guard let result = await self.service?.appleSignIn(token: idToken) else { return }
+        switch result {
+        case .success(let response):
+            guard let token = response?.token else { return }
+            self.isLoading = false
+            self.profileSetting.accessToken = token
+            router.navigateTo(screen: .main)
+        case .failure(let error):
+            self.isLoading = false
+            self.alert.type = .unableToSignInWithGoogle
+            self.alert.message = error.localizedDescription
+            self.alert.isPresented = true
+        }
     }
 }
