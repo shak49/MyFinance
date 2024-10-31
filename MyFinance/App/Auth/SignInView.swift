@@ -32,6 +32,15 @@ struct SignInView: View {
                         MyFinanceButtonView(type: .secondary, label: Constants.signUp) {
                             self.router.navigateTo(screen: .signUp)
                         }
+                        HStack {
+                            Button {
+                                self.router.navigateTo(screen: .recoverPassword)
+                            } label: {
+                                Text("Forgot password?")
+                                    .foregroundStyle(.primaryButton)
+                            }
+                            Spacer()
+                        }
                     }
                     HStack(spacing: 32) {
                         MyFinanceButtonView(type: .sso(.google)) {
