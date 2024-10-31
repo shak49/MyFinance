@@ -1,5 +1,5 @@
 //
-//  BasicTextField.swift
+//  MyFinanceCustomTextField.swift
 //  MyFinance
 //
 //  Created by Shak Feizi on 9/16/24.
@@ -13,7 +13,7 @@ enum FieldType {
     case password
 }
 
-struct CustomTextField: View {
+struct MyFinanceCustomTextField: View {
     // MARK: - Properties
     private let text: Binding<String>
     private let placeholder: String
@@ -94,5 +94,5 @@ struct CustomTextField: View {
 }
 
 #Preview {
-    CustomTextField(text: .constant(""), placeholder: Constants.placeholderEmail, type: .email, error: Constants.errorEmail)
+    MyFinanceCustomTextField(text: .constant(""), placeholder: Constants.placeholderEmail, type: .email, error: Constants.errorEmail)
 }

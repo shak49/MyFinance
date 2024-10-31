@@ -1,15 +1,13 @@
 //
-//  ButtonView.swift
+//  MyFinanceButtonView.swift
 //  MyFinance
 //
 //  Created by Shak Feizi on 9/6/24.
 //
 
 import SwiftUI
-import UIKit
-import AuthenticationServices
 
-struct ButtonView: View {
+struct MyFinanceButtonView: View {
     // MARK: - Properties
     let type: ButtonType
     let label: String
@@ -35,7 +33,7 @@ struct ButtonView: View {
     }
 }
 
-extension ButtonView {
+extension MyFinanceButtonView {
     var primary: some View {
         Button {
             self.action()
@@ -72,5 +70,5 @@ extension ButtonView {
 }
 
 #Preview {
-    ButtonView(type: .sso(.apple), label: "") {}
+    MyFinanceButtonView(type: .sso(.apple), label: "") {}
 }

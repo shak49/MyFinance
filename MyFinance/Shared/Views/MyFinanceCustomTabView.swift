@@ -1,5 +1,5 @@
 //
-//  CustomTabView.swift
+//  MyFinanceCustomTabView.swift
 //  MyFinance
 //
 //  Created by Shak Feizi on 9/27/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomTabView: View {
+struct MyFinanceCustomTabView: View {
     // MARK: - Properties
     @Binding var selectedTab: Tab
     
@@ -30,7 +30,7 @@ struct CustomTabView: View {
 }
 
 #Preview {
-    CustomTabView(selectedTab: .constant(.home))
+    MyFinanceCustomTabView(selectedTab: .constant(.home))
 }
 
 struct TabButtonView: View {
