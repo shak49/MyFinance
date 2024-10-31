@@ -139,7 +139,7 @@ extension AuthVM {
             guard let token = response?.token else { return }
             self.isLoading = false
             self.profileSetting.accessToken = token
-            router.navigateTo(screen: .main)
+            //router.navigateTo(screen: .main)
         case .failure(let error):
             self.isLoading = false
             self.alert.type = .unableToSignInWithGoogle
