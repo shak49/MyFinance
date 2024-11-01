@@ -1,5 +1,5 @@
 //
-//  RecoverPasswordView.swift
+//  ResetPasswordView.swift
 //  MyFinance
 //
 //  Created by Shak Feizi on 10/31/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecoverPasswordView: View {
+struct ResetPasswordView: View {
     // MARK: - Properties
     @StateObject var model = AuthVM()
     
@@ -16,13 +16,13 @@ struct RecoverPasswordView: View {
         ContainerView {
             VStack(spacing: 64) {
                 Label {
-                    Text("Please enter your email used for sign up to retrieve your password.")
+                    Text("Please create your new password.")
                         .multilineTextAlignment(.center)
                         .font(.system(size: 24))
                 } icon: {}
                     .foregroundStyle(.primaryButton)
                     .padding(.horizontal, 32)
-                VStack(spacing: 32) {
+                VStack {
                     MyFinanceCustomTextField(text: self.$model.recoveryEmail, placeholder: "Enter here...", type: .normal)
                     Spacer()
                     MyFinanceButtonView(type: .primary, label: "Continue") {
@@ -37,5 +37,5 @@ struct RecoverPasswordView: View {
 }
 
 #Preview {
-    RecoverPasswordView()
+    ResetPasswordView()
 }
