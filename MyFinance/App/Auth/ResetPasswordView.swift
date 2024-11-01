@@ -23,7 +23,7 @@ struct ResetPasswordView: View {
                     .foregroundStyle(.primaryButton)
                     .padding(.horizontal, 32)
                 VStack {
-                    MyFinanceCustomTextField(text: self.$model.recoveryEmail, placeholder: "Enter here...", type: .normal)
+                    MyFinanceCustomTextField(text: self.$model.email, placeholder: "Enter here...", type: .normal)
                     Spacer()
                     MyFinanceButtonView(type: .primary, label: "Continue") {
                         self.model.performPasswordRecovery()
