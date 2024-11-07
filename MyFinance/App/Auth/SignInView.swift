@@ -27,7 +27,7 @@ struct SignInView: View {
                 VStack(spacing: 40) {
                     VStack(spacing: 16) {
                         MyFinanceButtonView(type: .primary, label: Constants.signIn) {
-                            self.model.performSignIn(router: self.router)
+                            self.model.performSignIn()
                         }
                         MyFinanceButtonView(type: .secondary, label: Constants.signUp) {
                             self.router.navigateTo(screen: .signUp)
@@ -44,7 +44,7 @@ struct SignInView: View {
                     }
                     HStack(spacing: 32) {
                         MyFinanceButtonView(type: .sso(.google)) {
-                            self.model.performGoogleSignIn(router: self.router)
+                            self.model.performGoogleSignIn()
                         }
                         MyFinanceButtonView(type: .sso(.apple)) {
                             self.model.performAppleSignIn()
@@ -54,6 +54,9 @@ struct SignInView: View {
             }
             .padding(.horizontal, 32)
             .padding(.vertical, 96)
+        }
+        .onAppear {
+            self.model.setup(router: self.router)
         }
     }
 }

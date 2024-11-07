@@ -27,7 +27,7 @@ struct SignUpView: View {
                 Spacer()
                 VStack(spacing: 16) {
                     MyFinanceButtonView(type: .primary, label: Constants.signUp) {
-                        self.model.performSignUp(router: self.router)
+                        self.model.performSignUp()
                     }
                     MyFinanceButtonView(type: .secondary, label: Constants.signIn) {
                         self.router.navigateTo(screen: .signIn)
@@ -36,6 +36,9 @@ struct SignUpView: View {
             }
             .padding(.horizontal, 32)
             .padding(.vertical, 96)
+        }
+        .onAppear {
+            self.model.setup(router: self.router)
         }
     }
 }
