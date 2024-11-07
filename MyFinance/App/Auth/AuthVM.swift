@@ -15,6 +15,7 @@ final class AuthVM: BaseVM {
     private var profileSetting = ProfileSetting.shared
     private var ssoUtility = SSOUtility.shared
     private var currentNonce: String?
+    private var router: Router?
     @Published var fistname: String = Constants.emptyString
     @Published var lastname: String = Constants.emptyString
     @Published var email: String = Constants.emptyString
@@ -23,7 +24,11 @@ final class AuthVM: BaseVM {
     // MARK: - Lifecycles
     
     // MARK: - Functions
-    @MainActor func performSignUp(router: Router) {
+    @MainActor func setup(router: Router? = nil) {
+        self.router = router
+    }
+    
+    @MainActor func performSignUp() {
         let request = SignUpRequest(firstname: self.fistname, lastname: self.lastname, email: self.email, password: self.password)
         self.isLoading = true
         Task {
@@ -35,7 +40,7 @@ final class AuthVM: BaseVM {
                 self.profileSetting.accessToken = token
                 self.toast.type = .success
                 self.toast.isPresented = true
-                router.navigateTo(screen: .main)
+                self.router?.navigateTo(screen: .main)
             case .failure(let error):
                 self.isLoading = false
                 self.alert.type = .unableToSignUp
@@ -45,7 +50,7 @@ final class AuthVM: BaseVM {
         }
     }
     
-    @MainActor func performSignIn(router: Router) {
+    @MainActor func performSignIn() {
         let request = SignInRequest(email: self.email, password: self.password)
         self.isLoading = true
         Task {
@@ -55,7 +60,7 @@ final class AuthVM: BaseVM {
                 guard let token = response?.token else { return }
                 self.isLoading = false
                 self.profileSetting.accessToken = token
-                router.navigateTo(screen: .main)
+                self.router?.navigateTo(screen: .main)
             case .failure(let error):
                 self.isLoading = false
                 self.alert.type = .unableToSignIn
@@ -70,7 +75,7 @@ final class AuthVM: BaseVM {
         self.initiateAppleAuth()
     }
     
-    @MainActor func performGoogleSignIn(router: Router) {
+    @MainActor func performGoogleSignIn() {
         self.isLoading = true
         Task {
             guard let idToken = await self.initiateGoogleAuth() else { return }
@@ -80,7 +85,7 @@ final class AuthVM: BaseVM {
                 guard let token = response?.token else { return }
                 self.isLoading = false
                 self.profileSetting.accessToken = token
-                router.navigateTo(screen: .main)
+                self.router?.navigateTo(screen: .main)
             case .failure(let error):
                 self.isLoading = false
                 self.alert.type = .unableToSignInWithGoogle
@@ -143,7 +148,7 @@ extension AuthVM {
             guard let token = response?.token else { return }
             self.isLoading = false
             self.profileSetting.accessToken = token
-            //router.navigateTo(screen: .main)
+            self.router?.navigateTo(screen: .main)
         case .failure(let error):
             self.isLoading = false
             self.alert.type = .unableToSignInWithGoogle
