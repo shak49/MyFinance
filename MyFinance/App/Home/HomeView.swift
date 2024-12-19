@@ -15,14 +15,14 @@ struct HomeView: View {
     // MARK: - Body
     var body: some View {
         ContainerView(toast: self.model.toast) {
-            VStack {
+            VStack(spacing: 32) {
                 HStack {
                     Button {
                         self.router.navigateTo(screen: .profile)
                     } label: {
                         ZStack {
                             Circle()
-                                .frame(width: 40)
+                                .frame(width: 40, height: 40)
                                 .foregroundStyle(Color(hex: self.model.avator))
                             Text(self.model.nameInitial)
                                 .font(.headline)
@@ -39,11 +39,133 @@ struct HomeView: View {
                         .frame(width: 150, height: 150)
                     Spacer(minLength: 100)
                 }
-                .frame(width: 360)
-                Spacer()
-                Text("Welcome to Home screen!")
-                    .foregroundStyle(.textAccentW)
-                Spacer()
+                .frame(width: 360, height: 40)
+                ScrollView {
+                    VStack(spacing: 40) {
+                        VStack(alignment: .leading) {
+                            Label {
+                                Text("Your balance")
+                                    .foregroundStyle(.textAccentW)
+                            } icon: {
+                                
+                            }
+                            HStack(spacing: 8) {
+                                Label {
+                                    Text("$0,000")
+                                        .font(.system(size: 32))
+                                        .bold()
+                                        .foregroundStyle(.textAccentW)
+                                } icon: {}
+                                    .frame(width: 120)
+                                Spacer()
+                                ZStack(alignment: .trailing) {
+                                    MyFinanceCustomTextField(text: self.$model.searchText, placeholder: "Type here...", type: .normal, radius: 25)
+                                        .frame(width: self.model.offsetSearchButton)
+                                    Button {
+                                        self.model.expandSearchBar()
+                                    } label: {
+                                        ZStack {
+                                            Circle()
+                                                .frame(height: 50)
+                                                .foregroundStyle(.textField)
+                                            Image(systemName: self.model.searchButtonIcon)
+                                                .foregroundStyle(.textAccentW)
+                                                .padding(.horizontal, 15)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        ScrollView(.horizontal) {
+                            LazyHStack(spacing: 12) {
+                                ForEach(0..<3, id: \.self) { _ in
+                                    RoundedRectangle(cornerRadius: 36)
+                                        .frame(width: 140, height: 160)
+                                        .foregroundStyle(.primaryButton.gradient)
+                                }
+                            }
+                        }
+                        .scrollIndicators(.hidden)
+                        .safeAreaPadding(.horizontal, 16)
+                        VStack(alignment: .leading) {
+                            Label {
+                                Text("Finance")
+                                    .foregroundStyle(.textAccentW)
+                            } icon: {
+                                
+                            }
+                            .padding(.horizontal, 16)
+                            ScrollView(.horizontal) {
+                                LazyHStack(spacing: 16) {
+                                    ForEach(0..<4, id: \.self) { _ in
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 32)
+                                                .frame(width: 100, height: 100)
+                                                .foregroundStyle(.secondaryButton)
+                                            VStack {
+                                                HStack {
+                                                    RoundedRectangle(cornerRadius: 12)
+                                                        .frame(width: 40, height: 40)
+                                                        .foregroundStyle(.primaryButton)
+                                                    Spacer()
+                                                }
+                                                Spacer()
+                                            }
+                                            .padding(16)
+                                        }
+                                    }
+                                }
+                            }
+                            .scrollIndicators(.hidden)
+                            .safeAreaPadding(.horizontal, 16)
+                        }
+                        ZStack(alignment: .leading) {
+                            RoundedRectangle(cornerRadius: 20)
+                                .foregroundStyle(.textField)
+                            VStack(spacing: 32) {
+                                HStack {
+                                    Menu {
+                                        ForEach(0...4, id: \.self) { _ in
+                                            Text("Example")
+                                        }
+                                    } label: {
+                                        Text("CURRENT LOANS")
+                                    }
+                                    Spacer()
+                                    Button {
+                                        
+                                    } label: {
+                                        ZStack {
+                                            Circle()
+                                                .frame(height: 20)
+                                                .foregroundStyle(.secondaryButton)
+                                            Image(systemName: "plus")
+                                                .resizable()
+                                                .frame(width:12, height: 8)
+                                                .foregroundStyle(.textAccentW)
+                                        }
+                                    }
+                                }
+                                Menu {
+                                    ForEach(0...4, id: \.self) { _ in
+                                        Text("Example")
+                                    }
+                                } label: {
+                                    HStack {
+                                        Text("CURRENCIES AND METALS")
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .foregroundStyle(.textAccentW)
+                            .padding(.vertical, 32)
+                            .padding(.horizontal, 32)
+                        }
+                        .padding(.horizontal, 16)
+                    }
+                }
+                .scrollIndicators(.hidden)
             }
         }
     }
