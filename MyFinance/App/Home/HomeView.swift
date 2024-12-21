@@ -145,50 +145,45 @@ extension HomeView {
             .safeAreaPadding(.horizontal, 16)
         }
     }
-    private var assetsAndLiabilities: some View {
-        ZStack(alignment: .leading) {
+    var assetsAndLiabilities: some View {
+        ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .foregroundStyle(.secondaryButton)
-            VStack(spacing: 32) {
-                HStack {
-                    Menu {
-                        ForEach(0...4, id: \.self) { _ in
-                            Text("Example")
-                        }
-                    } label: {
-                        Text("CURRENT LOANS")
-                            .font(.system(size: 12))
-                    }
-                    Spacer()
-                    Button {
-                        
-                    } label: {
-                        ZStack {
-                            Circle()
-                                .frame(height: 20)
-                                .foregroundStyle(.textField)
-                            Image(systemName: "plus")
-                                .resizable()
-                                .frame(width:12, height: 8)
-                                .foregroundStyle(.textAccentW)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 40) {
+                    ExpandableView(isExpanded: self.$model.isLoansExpanded, label: "CURRENT LOANS") {
+                        ForEach(self.model.assetItems) { asset in
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .frame(height: 60)
+                                    .foregroundStyle(.textField)
+                                HStack {
+                                    Text(asset.name ?? "")
+                                        .foregroundStyle(.textAccentW)
+                                    Spacer()
+                                }
+                                .padding(.horizontal, 16)
+                            }
                         }
                     }
-                }
-                Menu {
-                    ForEach(0...4, id: \.self) { _ in
-                        Text("Example")
-                    }
-                } label: {
-                    HStack {
-                        Text("CURRENCIES AND METALS")
-                            .font(.system(size: 12))
-                        Spacer()
+                    ExpandableView(isExpanded: self.$model.isCurrenciesExpanded, label: "CURRENCIES AND METALS") {
+                        ForEach(self.model.assetItems) { asset in
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .frame(height: 60)
+                                    .foregroundStyle(.textField)
+                                HStack {
+                                    Text(asset.name ?? "")
+                                        .foregroundStyle(.textAccentW)
+                                    Spacer()
+                                }
+                                .padding(.horizontal, 16)
+                            }
+                        }
                     }
                 }
             }
-            .foregroundStyle(.textAccentW)
-            .padding(.vertical, 32)
-            .padding(.horizontal, 32)
+            .padding(32)
         }
         .padding(.horizontal, 16)
     }

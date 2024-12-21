@@ -7,11 +7,23 @@
 
 import Foundation
 
+struct AssetItem: Identifiable {
+    var id = UUID()
+    var name: String?
+}
+
 final class HomeVM: BaseVM {
     // MARK: - Properties
     @Published var searchText: String = Constants.emptyString
     @Published var searchButtonIcon: String = "magnifyingglass"
     @Published var offsetSearchButton: Double = 50
+    @Published var isLoansExpanded: Bool = true
+    @Published var isCurrenciesExpanded: Bool = false
+    // Dummy data
+    var assetItems: [AssetItem] = [
+        AssetItem(name: "Row One"),
+        AssetItem(name: "Row Two")
+    ]
     
     // MARK: - Lifecycles
     override init() {
