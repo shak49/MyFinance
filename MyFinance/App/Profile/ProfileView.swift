@@ -32,9 +32,6 @@ struct ProfileView: View {
                 }
                 .padding(.horizontal, 16)
                 Spacer()
-                Text("Welcome \(self.model.fullname)!")
-                    .foregroundStyle(.textAccentW)
-                Spacer()
             }
         }
     }

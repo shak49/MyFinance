@@ -53,6 +53,7 @@
 		6DD43F8F2C98ECE000476743 /* MyFinanceCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F8E2C98ECE000476743 /* MyFinanceCustomTextField.swift */; };
 		6DD43F992C9E5A6300476743 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F982C9E5A6300476743 /* ToastView.swift */; };
 		6DD43F9B2C9E5B4100476743 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD43F9A2C9E5B4100476743 /* Toast.swift */; };
+		6DE1A0FD2D16205E00A40A69 /* ExpandableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE1A0FC2D16205E00A40A69 /* ExpandableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +104,7 @@
 		6DD43F8E2C98ECE000476743 /* MyFinanceCustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFinanceCustomTextField.swift; sourceTree = "<group>"; };
 		6DD43F982C9E5A6300476743 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		6DD43F9A2C9E5B4100476743 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		6DE1A0FC2D16205E00A40A69 /* ExpandableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 				6DD43F8E2C98ECE000476743 /* MyFinanceCustomTextField.swift */,
 				6D5F904C2C83EA810005CC5B /* NotImplementedView.swift */,
 				6DD43F982C9E5A6300476743 /* ToastView.swift */,
+				6DE1A0FC2D16205E00A40A69 /* ExpandableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				6D5F90772C8B87BD0005CC5B /* MyFinanceButtonView.swift in Sources */,
 				6D5F90332C83B9AE0005CC5B /* RouterView.swift in Sources */,
 				6D5F90312C83B9AE0005CC5B /* MyFinanceApp.swift in Sources */,
+				6DE1A0FD2D16205E00A40A69 /* ExpandableView.swift in Sources */,
 				6DD43F8F2C98ECE000476743 /* MyFinanceCustomTextField.swift in Sources */,
 				6D5F904D2C83EA810005CC5B /* NotImplementedView.swift in Sources */,
 				6D5F90472C83E8710005CC5B /* Router.swift in Sources */,
