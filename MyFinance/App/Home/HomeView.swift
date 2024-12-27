@@ -65,14 +65,14 @@ extension HomeView {
     private var balanceAndSearch: some View {
         VStack(alignment: .leading) {
             Label {
-                Text("Your balance")
+                Text(Constants.homeBalanceLabel)
                     .foregroundStyle(.textAccentW)
             } icon: {
                 
             }
             HStack(spacing: 8) {
                 Label {
-                    Text("$0,000")
+                    Text(Constants.homeBalanceAmount)
                         .font(.system(size: 32))
                         .bold()
                         .foregroundStyle(.textAccentW)
@@ -80,7 +80,7 @@ extension HomeView {
                     .frame(width: 120)
                 Spacer()
                 ZStack(alignment: .trailing) {
-                    MyFinanceCustomTextField(text: self.$model.searchText, placeholder: "Type here...", type: .normal, radius: 25, height: 40)
+                    MyFinanceCustomTextField(text: self.$model.searchText, placeholder: Constants.placeholderTypeHere, type: .normal, radius: 25, height: 40)
                         .frame(width: self.model.offsetSearchButton - 10)
                     Button {
                         self.model.expandSearchBar()
@@ -114,7 +114,7 @@ extension HomeView {
     private var financeCardScroller: some View {
         VStack(alignment: .leading) {
             Label {
-                Text("Finance")
+                Text(Constants.homeFinanceLabel)
                     .foregroundStyle(.textAccentW)
             } icon: {
                 
@@ -151,14 +151,14 @@ extension HomeView {
                 .foregroundStyle(.secondaryButton)
             ScrollView {
                 VStack(alignment: .leading, spacing: 40) {
-                    ExpandableView(isExpanded: self.$model.isLoansExpanded, label: "CURRENT LOANS") {
+                    ExpandableView(isExpanded: self.$model.isLoansExpanded, label: Constants.homeCurrentLoansLabel) {
                         ForEach(self.model.assetItems) { asset in
                             ZStack {
                                 RoundedRectangle(cornerRadius: 20)
                                     .frame(height: 60)
                                     .foregroundStyle(.textField)
                                 HStack {
-                                    Text(asset.name ?? "")
+                                    Text(asset.name ?? Constants.emptyString)
                                         .foregroundStyle(.textAccentW)
                                     Spacer()
                                 }
@@ -166,14 +166,14 @@ extension HomeView {
                             }
                         }
                     }
-                    ExpandableView(isExpanded: self.$model.isCurrenciesExpanded, label: "CURRENCIES AND METALS") {
+                    ExpandableView(isExpanded: self.$model.isCurrenciesExpanded, label: Constants.homeCurrenciesAndMetalsLabel) {
                         ForEach(self.model.assetItems) { asset in
                             ZStack {
                                 RoundedRectangle(cornerRadius: 20)
                                     .frame(height: 60)
                                     .foregroundStyle(.textField)
                                 HStack {
-                                    Text(asset.name ?? "")
+                                    Text(asset.name ?? Constants.emptyString)
                                         .foregroundStyle(.textAccentW)
                                     Spacer()
                                 }

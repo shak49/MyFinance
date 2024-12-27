@@ -14,8 +14,8 @@ struct ProfileView: View {
     
     // MARK: - Body
     var body: some View {
-        ContainerView {
-            VStack {
+        ContainerView(alert: self.model.alert) {
+            VStack(spacing: 32) {
                 HStack {
                     Spacer()
                     Button {
@@ -29,6 +29,34 @@ struct ProfileView: View {
                                 .foregroundStyle(.textAccentB)
                         }
                     }
+                }
+                .padding(.horizontal, 16)
+                Section {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(height: 50)
+                            .foregroundStyle(.secondaryButton)
+                        HStack {
+                            Text("Add an account")
+                                .font(.system(size: 20))
+                                .foregroundStyle(.textAccentW)
+                            Spacer()
+                            Button {
+                                self.model.performAddingAccount(router: self.router)
+                            } label: {
+                                ZStack {
+                                    Circle()
+                                        .frame(width: 30)
+                                        .foregroundStyle(.theme)
+                                    Image(systemName: "plus")
+                                        .foregroundStyle(.primaryButton)
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                    }
+                } header: {
+                    Text("")
                 }
                 .padding(.horizontal, 16)
                 Spacer()

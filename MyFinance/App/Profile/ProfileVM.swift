@@ -21,6 +21,15 @@ final class ProfileVM: BaseVM {
     }
     
     // MARK: - Functions
+    func performAddingAccount(router: Router?) {
+        self.alert.isPresented = true
+        self.alert.type = .addAccount {
+            router?.navigateTo(screen: .linkAccount)
+        } secondary: {
+            router?.navigateTo(screen: .addAccountManually)
+        }
+    }
+    
     @MainActor func getFullname() {
         Task {
             guard let firstname = await ProfileSetting.shared.getCurrentUser()?.firstname,

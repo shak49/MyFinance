@@ -15,7 +15,7 @@ struct AssetItem: Identifiable {
 final class HomeVM: BaseVM {
     // MARK: - Properties
     @Published var searchText: String = Constants.emptyString
-    @Published var searchButtonIcon: String = "magnifyingglass"
+    @Published var searchButtonIcon: String = Constants.iconSearch
     @Published var offsetSearchButton: Double = 50
     @Published var isLoansExpanded: Bool = true
     @Published var isCurrenciesExpanded: Bool = false
@@ -38,10 +38,10 @@ final class HomeVM: BaseVM {
     @MainActor func expandSearchBar() {
         if self.offsetSearchButton == 50 {
             self.offsetSearchButton = 230
-            self.searchButtonIcon = "xmark"
+            self.searchButtonIcon = Constants.iconClose
         } else {
             self.offsetSearchButton = 50
-            self.searchButtonIcon = "magnifyingglass"
+            self.searchButtonIcon = Constants.iconSearch
         }
     }
     
@@ -62,9 +62,5 @@ final class HomeVM: BaseVM {
             let lastInitial = String(currentUser.lastname.first!)
             self.nameInitial = firstInitial + lastInitial
         }
-    }
-    
-    @MainActor func preformAddingAccount() {
-        
     }
 }
