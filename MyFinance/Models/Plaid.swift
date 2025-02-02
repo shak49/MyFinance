@@ -9,6 +9,10 @@ import Foundation
 
 struct PlaidTokenRequest: Codable {
     let id: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+    }
 }
 
 struct PlaidTokenResponse: Codable {

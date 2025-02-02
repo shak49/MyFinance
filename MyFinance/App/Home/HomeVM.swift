@@ -56,7 +56,8 @@ extension HomeVM {
             guard let result = await self.service?.generatePlaidToken(request: request) else { return }
             switch result {
             case .success(let response):
-                print(response?.linkToken)
+                guard let linkToken = response?.linkToken else { return }
+                print(linkToken)
             case .failure(let error):
                 print(error)
             }
