@@ -9,33 +9,31 @@ import Foundation
 
 struct AssetItem: Identifiable {
     var id = UUID()
-    var name: String?
+    var name: String = Constants.emptyString
 }
 
 final class HomeVM: BaseVM {
     // MARK: - Properties
+    private var service: AccountService? = AccountService()
     @Published var searchText: String = Constants.emptyString
     @Published var searchButtonIcon: String = Constants.iconSearch
     @Published var offsetSearchButton: Double = 50
     @Published var isLoansExpanded: Bool = true
     @Published var isCurrenciesExpanded: Bool = false
-    // Dummy data
+    // Dummy data / Temporary
     var assetItems: [AssetItem] = [
         AssetItem(name: "Row One"),
-        AssetItem(name: "Row Two")
+        AssetItem(name: "Row Two"),
+        AssetItem(name: "Row Three")
     ]
     
     // MARK: - Lifecycles
     override init() {
         super.init()
-        Task {
-            await self.getAvatorColor()
-            await self.createInitials()
-        }
     }
     
     // MARK: - Functions
-    @MainActor func expandSearchBar() {
+    func expandSearchBar() {
         if self.offsetSearchButton == 50 {
             self.offsetSearchButton = 230
             self.searchButtonIcon = Constants.iconClose
@@ -44,23 +42,24 @@ final class HomeVM: BaseVM {
             self.searchButtonIcon = Constants.iconSearch
         }
     }
-    
-    @MainActor func getAvatorColor() {
-        Task {
-            guard let currentUser = await ProfileSetting.shared.getCurrentUser() else { return }
-            var avator = currentUser.avator
-            let index = avator.index(avator.startIndex, offsetBy: 0)
-            avator.remove(at: index)
-            self.avator = String(avator)
-        }
+
+    func linkAccount() {
+        self.generatePlaidLinkToken()
     }
-    
-    @MainActor func createInitials() {
+}
+
+extension HomeVM {
+    private func generatePlaidLinkToken() {
+        let userId = self.userProfile?.id
+        let request = PlaidTokenRequest(id: userId)
         Task {
-            guard let currentUser = await ProfileSetting.shared.getCurrentUser() else { return }
-            let firstInitial = String(currentUser.firstname.first!)
-            let lastInitial = String(currentUser.lastname.first!)
-            self.nameInitial = firstInitial + lastInitial
+            guard let result = await self.service?.generatePlaidToken(request: request) else { return }
+            switch result {
+            case .success(let response):
+                print(response?.linkToken)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }

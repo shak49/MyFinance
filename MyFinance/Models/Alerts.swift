@@ -8,9 +8,6 @@
 import SwiftUI
 
 enum AlertType {
-    typealias ActionType = () -> Void
-    
-    case addAccount(primary: ActionType, secondary: ActionType)
     case unableToProceed
     case unableToSignIn
     case unableToSignInWithGoogle
@@ -24,8 +21,6 @@ struct Alerts {
     var isPresented: Bool
     var display: Alert {
         switch type {
-        case .addAccount(let primary, let secondary):
-            Alert(title: Text(Constants.alertNewAccountTitle), primaryButton: .default(Text(Constants.alertButtonLinkAccount), action: primary), secondaryButton: .default(Text(Constants.alertButtonAddSomethingManually), action: secondary))
         case .unableToProceed:
             Alert(title: Text(Constants.alertErrorTitle), message: Text(Constants.alertCannotProceedMessage), dismissButton: .cancel(Text(Constants.alertButtonDismiss)))
         case .unableToSignIn:

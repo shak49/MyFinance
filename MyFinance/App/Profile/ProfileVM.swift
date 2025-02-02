@@ -7,38 +7,47 @@
 
 import Foundation
 
+struct UserProfile {
+    var user: User?
+    var id: String? {
+        guard let user = user else { return "" }
+        return user.id
+    }
+    var fullname: String? {
+        if let firstname = self.user?.firstname,
+           let lastname = self.user?.lastname {
+            return firstname + Constants.spaceString + lastname
+        }
+        return nil
+    }
+    var initial: String? {
+        if let firstInitial = self.user?.firstname.first,
+           let lastInitial = self.user?.lastname.first {
+            return String(firstInitial) + String(lastInitial)
+        }
+        return nil
+    }
+    var avator: String? {
+        if var avator = self.user?.avator {
+            let index = avator.index(avator.startIndex, offsetBy: 0)
+            avator.remove(at: index)
+            return avator
+        }
+        return nil
+    }
+}
+
 final class ProfileVM: BaseVM {
     // MARK: - Properties
     private var service: AuthService? = AuthService()
-    @Published var fullname: String = Constants.emptyString
     
     // MARK: - Lifecycles
     override init() {
         super.init()
-        Task {
-            await self.getFullname()
-        }
     }
     
     // MARK: - Functions
-    func performAddingAccount(router: Router?) {
-        self.alert.isPresented = true
-        self.alert.type = .addAccount {
-            router?.navigateTo(screen: .linkAccount)
-        } secondary: {
-            router?.navigateTo(screen: .addAccountManually)
-        }
-    }
-    
-    @MainActor func getFullname() {
-        Task {
-            guard let firstname = await ProfileSetting.shared.getCurrentUser()?.firstname,
-                  let lastname = await ProfileSetting.shared.getCurrentUser()?.lastname else { return }
-            self.fullname = firstname + " " + lastname
-        }
-    }
-    
-    @MainActor func preformSignOut(router: Router?) {
+    func preformSignOut(router: Router?) {
         Task {
             await self.service?.signOut()
             router?.navigateTo(screen: .signIn)

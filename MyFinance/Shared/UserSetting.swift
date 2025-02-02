@@ -1,5 +1,5 @@
 //
-//  ProfileSetting.swift
+//  UserSetting.swift
 //  MyFinance
 //
 //  Created by Shak Feizi on 9/23/24.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-final class ProfileSetting {
+final class UserSetting {
     // MARK: - Properties
-    static let shared = ProfileSetting()
+    static let shared = UserSetting()
     private var service = ProfileService()
     var accessToken: String? = Constants.emptyString
     
@@ -17,7 +17,7 @@ final class ProfileSetting {
     private init() {}
     
     // MARK: - Functions
-    func getCurrentUser() async -> UserProfile? {
+    func getCurrentUser() async -> User? {
         guard let token = self.accessToken else { return nil }
         return await self.service.currentUser(token: token)
     }

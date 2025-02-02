@@ -9,6 +9,7 @@ import Foundation
 
 struct Constants {
     static let emptyString = ""
+    static let spaceString = " "
     static let predicateFormat = "SELF MATCHES %Q"
     static let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+|\\.[A-Za-z]{2, 64}"
     // MARK: - Alerts

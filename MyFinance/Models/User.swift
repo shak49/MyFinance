@@ -1,5 +1,5 @@
 //
-//  UserProfile.swift
+//  User.swift
 //  MyFinance
 //
 //  Created by Shak Feizi on 9/26/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserProfile: Codable {
+struct User: Codable {
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case avator = "avator_color"

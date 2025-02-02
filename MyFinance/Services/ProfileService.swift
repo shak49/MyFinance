@@ -14,9 +14,9 @@ final class ProfileService {
     // MARK: - Lifecycles
     
     // MARK: - Functions
-    func currentUser(token: String) async -> UserProfile? {
+    func currentUser(token: String) async -> User? {
         do {
-            let user = try await self.client.request(endpoint: .currentUser(token: token), type: UserProfile.self)
+            let user = try await self.client.request(endpoint: .currentUser(token: token), type: User.self)
             return user
         } catch {
             print("ERROR: \(error.localizedDescription)")

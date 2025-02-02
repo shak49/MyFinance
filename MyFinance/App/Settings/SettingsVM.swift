@@ -14,7 +14,7 @@ final class SettingsVM: BaseVM {
     // MARK: - Lifecycles
 
     // MARK: - Functions
-    @MainActor func preformSignOut(router: Router) {
+    func preformSignOut(router: Router) {
         Task {
             await self.service.signOut()
             router.navigateTo(screen: .signIn)
