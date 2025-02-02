@@ -12,7 +12,7 @@ import GoogleSignIn
 final class AuthVM: BaseVM {
     // MARK: - Properties
     private var service: AuthService? = AuthService()
-    private var profileSetting = ProfileSetting.shared
+    private var profileSetting = UserSetting.shared
     private var ssoUtility = SSOUtility.shared
     private var currentNonce: String?
     private var router: Router?
@@ -24,11 +24,11 @@ final class AuthVM: BaseVM {
     // MARK: - Lifecycles
     
     // MARK: - Functions
-    @MainActor func setup(router: Router? = nil) {
+    func setup(router: Router? = nil) {
         self.router = router
     }
-    
-    @MainActor func performSignUp() {
+
+    func performSignUp() {
         let request = SignUpRequest(firstname: self.fistname, lastname: self.lastname, email: self.email, password: self.password)
         self.isLoading = true
         Task {
@@ -49,8 +49,8 @@ final class AuthVM: BaseVM {
             }
         }
     }
-    
-    @MainActor func performSignIn() {
+
+    func performSignIn() {
         let request = SignInRequest(email: self.email, password: self.password)
         self.isLoading = true
         Task {
@@ -69,13 +69,13 @@ final class AuthVM: BaseVM {
             }
         }
     }
-    
-    @MainActor func performAppleSignIn() {
+
+    func performAppleSignIn() {
         self.isLoading = true
         self.initiateAppleAuth()
     }
-    
-    @MainActor func performGoogleSignIn() {
+
+    func performGoogleSignIn() {
         self.isLoading = true
         Task {
             guard let idToken = await self.initiateGoogleAuth() else { return }
@@ -95,13 +95,13 @@ final class AuthVM: BaseVM {
         }
     }
     
-    @MainActor func performPasswordRecovery() {
+    func performPasswordRecovery() {
         
     }
 }
 
 extension AuthVM {
-    @MainActor private func initiateAppleAuth() {
+    private func initiateAppleAuth() {
         let nonce = self.ssoUtility.randomNonceString()
         self.currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -113,7 +113,7 @@ extension AuthVM {
         authorizationController.performRequests()
     }
     
-    @MainActor private func initiateGoogleAuth() async -> String? {
+    private func initiateGoogleAuth() async -> String? {
         guard let viewController = self.ssoUtility.topViewController() else { return nil }
         do {
             let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: viewController)
@@ -127,7 +127,7 @@ extension AuthVM {
 }
 
 extension AuthVM: ASAuthorizationControllerDelegate {
-    @MainActor func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         Task {
             if let appleIdCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
                 guard let nonce = self.currentNonce else { return }
@@ -140,7 +140,7 @@ extension AuthVM: ASAuthorizationControllerDelegate {
 }
 
 extension AuthVM {
-    @MainActor private func appleAuthCallback(idToken: String?) async {
+    private func appleAuthCallback(idToken: String?) async {
         guard let idToken = idToken else { return }
         guard let result = await self.service?.appleSignIn(token: idToken) else { return }
         switch result {

@@ -8,12 +8,16 @@
 import Foundation
 
 enum Endpoint {
+    // Auth
     case signUp(data: Data?)
     case signIn(data: Data?)
     case appleSignIn(token: String)
     case googleSignIn(token: String)
-    case currentUser(token: String)
     case signOut
+    // Profile
+    case currentUser(token: String)
+    // Account
+    case generatePlaidToken(data: Data?)
 }
 
 extension Endpoint {
@@ -37,10 +41,12 @@ extension Endpoint {
             return "/auth/apple"
         case .googleSignIn:
             return "/auth/google"
-        case .currentUser:
-            return "/profile/current-user"
         case .signOut:
             return "/auth/sign-out"
+        case .currentUser:
+            return "/profile/current-user"
+        case .generatePlaidToken:
+            return "/account/generate-plaid-token/"
         }
     }
     var method: MethodType {
@@ -53,16 +59,18 @@ extension Endpoint {
             return .GET(token: token)
         case .googleSignIn(let token):
             return .GET(token: token)
-        case .currentUser(let token):
-            return .GET(token: token)
         case .signOut:
             return .GET()
+        case .currentUser(let token):
+            return .GET(token: token)
+        case .generatePlaidToken(let data):
+            return .POST(data: data)
         }
     }
     var queryItems: [URLQueryItem] {
         var items: [URLQueryItem] = []
         switch self {
-        case .signUp, .signIn, .appleSignIn, .googleSignIn, .currentUser, .signOut:
+        case .signUp, .signIn, .appleSignIn, .googleSignIn, .signOut, .currentUser, .generatePlaidToken:
             break
         }
         return items

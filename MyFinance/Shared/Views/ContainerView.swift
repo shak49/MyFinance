@@ -10,16 +10,18 @@ import SwiftUI
 struct ContainerView<Content: View>: View {
     // MARK: - Properties
     private let isLoading: Bool?
-    private let alert: CustomAlert
-    private var toast: Toast
+    private let alert: Alerts
+    private let toast: Toast
+    private let sheet: Sheets
     private let content: Content
     @State private var isDisabled: Bool = false
     
     // MARK: - Lifecycles
-    init(isLoading: Bool? = false, alert: CustomAlert = .init(type: .unableToProceed, message: Constants.emptyString, isPresented: false), toast: Toast = Toast(type: .info, isPresented: false), content: @escaping () -> Content) {
+    init(isLoading: Bool? = false, alert: Alerts = .init(type: .unableToProceed, message: Constants.emptyString, isPresented: false), toast: Toast = Toast(type: .info, isPresented: false), sheet: Sheets = .init(isPresented: false), content: @escaping () -> Content) {
         self.isLoading = isLoading
         self.alert = alert
         self.toast = toast
+        self.sheet = sheet
         self.content = content()
     }
     
@@ -48,6 +50,8 @@ struct ContainerView<Content: View>: View {
                 self.alert.display
             }
             // Toast
+            
+            // Sheet
         }
     }
 }

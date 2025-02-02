@@ -27,6 +27,18 @@ struct HomeView: View {
                 }
                 .scrollIndicators(.hidden)
             }
+            .confirmationDialog("", isPresented: self.$model.sheet.isPresented) {
+                Button {
+                    self.model.linkAccount()
+                } label: {
+                    Text("Link Account")
+                }
+                Button {
+                    
+                } label: {
+                    Text("Add manually")
+                }
+            }
         }
     }
 }
@@ -44,8 +56,8 @@ extension HomeView {
                 ZStack {
                     Circle()
                         .frame(width: 40, height: 40)
-                        .foregroundStyle(Color(hex: self.model.avator))
-                    Text(self.model.nameInitial)
+                        .foregroundStyle(Color(hex: self.model.userProfile?.avator ?? Constants.emptyString))
+                    Text(self.model.userProfile?.initial ?? Constants.emptyString)
                         .font(.headline)
                         .foregroundStyle(.textAccentW)
                 }
@@ -64,15 +76,17 @@ extension HomeView {
     }
     private var balanceAndSearch: some View {
         VStack(alignment: .leading) {
+            // Your Balance Label
             Label {
-                Text("Your balance")
+                Text(Constants.homeBalanceLabel)
                     .foregroundStyle(.textAccentW)
             } icon: {
                 
             }
+            // Expandable Search Button
             HStack(spacing: 8) {
                 Label {
-                    Text("$0,000")
+                    Text(Constants.homeBalanceAmount)
                         .font(.system(size: 32))
                         .bold()
                         .foregroundStyle(.textAccentW)
@@ -80,7 +94,7 @@ extension HomeView {
                     .frame(width: 120)
                 Spacer()
                 ZStack(alignment: .trailing) {
-                    MyFinanceCustomTextField(text: self.$model.searchText, placeholder: "Type here...", type: .normal, radius: 25, height: 40)
+                    MyFinanceCustomTextField(text: self.$model.searchText, placeholder: Constants.placeholderTypeHere, type: .normal, radius: 25, height: 40)
                         .frame(width: self.model.offsetSearchButton - 10)
                     Button {
                         self.model.expandSearchBar()
@@ -113,13 +127,15 @@ extension HomeView {
     }
     private var financeCardScroller: some View {
         VStack(alignment: .leading) {
+            // Finance Label
             Label {
-                Text("Finance")
+                Text(Constants.homeFinanceLabel)
                     .foregroundStyle(.textAccentW)
             } icon: {
                 
             }
             .padding(.horizontal, 16)
+            // Card Scroller
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 16) {
                     ForEach(0..<4, id: \.self) { _ in
@@ -150,15 +166,29 @@ extension HomeView {
             RoundedRectangle(cornerRadius: 20)
                 .foregroundStyle(.secondaryButton)
             ScrollView {
-                VStack(alignment: .leading, spacing: 40) {
-                    ExpandableView(isExpanded: self.$model.isLoansExpanded, label: "CURRENT LOANS") {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Spacer()
+                        Button {
+                            self.model.sheet.isPresented = true
+                        } label: {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 30)
+                                    .foregroundStyle(.theme)
+                                Image(systemName: "plus")
+                                    .foregroundStyle(.primaryButton)
+                            }
+                        }
+                    }
+                    ExpandableView(isExpanded: self.$model.isLoansExpanded, label: Constants.homeCurrentLoansLabel) {
                         ForEach(self.model.assetItems) { asset in
                             ZStack {
                                 RoundedRectangle(cornerRadius: 20)
                                     .frame(height: 60)
                                     .foregroundStyle(.textField)
                                 HStack {
-                                    Text(asset.name ?? "")
+                                    Text(asset.name)
                                         .foregroundStyle(.textAccentW)
                                     Spacer()
                                 }
@@ -166,14 +196,15 @@ extension HomeView {
                             }
                         }
                     }
-                    ExpandableView(isExpanded: self.$model.isCurrenciesExpanded, label: "CURRENCIES AND METALS") {
+                    Spacer(minLength: 40)
+                    ExpandableView(isExpanded: self.$model.isCurrenciesExpanded, label: Constants.homeCurrenciesAndMetalsLabel) {
                         ForEach(self.model.assetItems) { asset in
                             ZStack {
                                 RoundedRectangle(cornerRadius: 20)
                                     .frame(height: 60)
                                     .foregroundStyle(.textField)
                                 HStack {
-                                    Text(asset.name ?? "")
+                                    Text(asset.name)
                                         .foregroundStyle(.textAccentW)
                                     Spacer()
                                 }

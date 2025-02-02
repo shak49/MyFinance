@@ -23,8 +23,8 @@ struct RouterView<Content: View>: View {
             self.content
                 .navigationDestination(for: Screen.self) { destination in
                     self.router.view(screen: destination)
-                        .background(.theme)
                 }
+                .backgroundStyle(.theme)
         }
         .environmentObject(self.router)
     }

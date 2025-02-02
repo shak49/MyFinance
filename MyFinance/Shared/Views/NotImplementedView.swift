@@ -9,9 +9,11 @@ import SwiftUI
 
 struct NotImplementedView: View {
     var body: some View {
-        Text("This screen has not implemented!")
-            .foregroundStyle(.textAccentW)
+        ContainerView {
+            Text("This screen has not implemented!")
+                .foregroundStyle(.textAccentW)
             .lineLimit(2)
+        }
     }
 }
 

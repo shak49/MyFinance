@@ -15,7 +15,7 @@ enum AlertType {
     case unableToSignUpWithApple
 }
 
-struct CustomAlert {
+struct Alerts {
     var type: AlertType
     var message: String
     var isPresented: Bool
